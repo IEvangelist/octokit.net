@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<Description>An async-based GitHub API client library for .NET and .NET Core</Description>
@@ -17,8 +17,18 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>GitHub API Octokit linqpad-samples dotnetcore</PackageTags>
 		<Copyright>Copyright GitHub 2017</Copyright>
+    <LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))
+        Or $([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))
+        Or $([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <IsTrimmable>true</IsTrimmable>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+  </PropertyGroup>
+  
+  
 	<PropertyGroup>
 		<DefineConstants>$(DefineConstants);SIMPLE_JSON_INTERNAL;SIMPLE_JSON_OBJARRAYINTERNAL;SIMPLE_JSON_READONLY_COLLECTIONS;SIMPLE_JSON_TYPEINFO</DefineConstants>
 		<NoWarn>$(NoWarn);1591;1701;1702;1705</NoWarn>

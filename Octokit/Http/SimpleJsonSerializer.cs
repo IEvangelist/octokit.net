@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
@@ -10,8 +10,9 @@ namespace Octokit.Internal
 {
     public class SimpleJsonSerializer : IJsonSerializer
     {
-        static readonly GitHubSerializerStrategy _serializationStrategy = new GitHubSerializerStrategy();
+        static readonly GitHubSerializerStrategy _serializationStrategy = new();
 
+#if NETSTANDARD2_0
         public string Serialize(object item)
         {
             return SimpleJson.SerializeObject(item, _serializationStrategy);
@@ -21,13 +22,33 @@ namespace Octokit.Internal
         {
             return SimpleJson.DeserializeObject<T>(json, _serializationStrategy);
         }
+#else
+        public string Serialize<T>(T item, System.Text.Json.Serialization.Metadata.JsonTypeInfo<T> jsonTypeInfo)
+        {
+            throw new NotImplementedException(
+                "When targeting .NET 6+, use the SystemTextJsonSerializer.");
+        }
+
+        public T Deserialize<T>(string json, System.Text.Json.Serialization.Metadata.JsonTypeInfo<T> jsonTypeInfo)
+        {
+            throw new NotImplementedException(
+                "When targeting .NET 6+, use the SystemTextJsonSerializer.");
+        }
+#endif
 
         internal static string SerializeEnum(Enum value)
         {
             return _serializationStrategy.SerializeEnumHelper(value).ToString();
         }
 
-        internal static object DeserializeEnum(string value, Type type)
+        internal static object DeserializeEnum(
+            string value,
+#if NET6_0_OR_GREATER
+                [DynamicallyAccessedMembers(memberTypes:
+                    DynamicallyAccessedMemberTypes.PublicFields |
+                    DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
+            Type type)
         {
             return _serializationStrategy.DeserializeEnumHelper(value, type);
         }
@@ -70,8 +91,8 @@ namespace Octokit.Internal
 
                 if (ReflectionUtils.IsStringEnumWrapper(type))
                 {
-                    // Handle StringEnum<T> by getting the underlying enum value, then using the enum serializer
-                    // Note this will throw if the StringEnum<T> was initialized using a string that is not a valid enum member
+                    // Handle StringEnum<TResult> by getting the underlying enum value, then using the enum serializer
+                    // Note this will throw if the StringEnum<TResult> was initialized using a string that is not a valid enum member
                     var inputEnum = (getters["value"](input) as Enum);
                     if (inputEnum != null)
                     {
@@ -111,7 +132,14 @@ namespace Octokit.Internal
                 return p.ToParameter();
             }
 
-            internal object DeserializeEnumHelper(string value, Type type)
+            internal object DeserializeEnumHelper(
+                string value,
+#if NET6_0_OR_GREATER
+                [DynamicallyAccessedMembers(memberTypes: 
+                    DynamicallyAccessedMemberTypes.PublicFields |
+                    DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
+                Type type)
             {
                 var cachedEnumsForType = _cachedEnums.GetOrAdd(type, t =>
                 {
@@ -140,7 +168,15 @@ namespace Octokit.Internal
             private string _type;
 
             // Overridden to handle enums.
-            public override object DeserializeObject(object value, Type type)
+            public override object DeserializeObject(
+                object value,
+#if NET6_0_OR_GREATER
+                [DynamicallyAccessedMembers(memberTypes: 
+                    DynamicallyAccessedMemberTypes.PublicConstructors |
+                    DynamicallyAccessedMemberTypes.PublicFields |
+                    DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
+                Type type)
             {
                 var stringValue = value as string;
                 var jsonValue = value as JsonObject;
@@ -214,42 +250,33 @@ namespace Octokit.Internal
                         p => new KeyValuePair<Type, ReflectionUtils.SetDelegate>(p.Type, p.SetDelegate));
             }
 
+#if NET6_0_OR_GREATER
+            [return: DynamicallyAccessedMembers(memberTypes:
+                DynamicallyAccessedMemberTypes.PublicConstructors |
+                DynamicallyAccessedMemberTypes.PublicFields |
+                DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
             private static Type GetPayloadType(string activityType)
             {
-                switch (activityType)
+                return activityType switch
                 {
-                    case "CheckRunEvent":
-                        return typeof(CheckRunEventPayload);
-                    case "CheckSuiteEvent":
-                        return typeof(CheckSuiteEventPayload);
-                    case "CommitCommentEvent":
-                        return typeof(CommitCommentPayload);
-                    case "CreateEvent":
-                        return typeof(CreateEventPayload);
-                    case "DeleteEvent":
-                        return typeof(DeleteEventPayload);
-                    case "ForkEvent":
-                        return typeof(ForkEventPayload);
-                    case "IssueCommentEvent":
-                        return typeof(IssueCommentPayload);
-                    case "IssuesEvent":
-                        return typeof(IssueEventPayload);
-                    case "PullRequestEvent":
-                        return typeof(PullRequestEventPayload);
-                    case "PullRequestReviewEvent":
-                        return typeof(PullRequestReviewEventPayload);
-                    case "PullRequestReviewCommentEvent":
-                        return typeof(PullRequestCommentPayload);
-                    case "PushEvent":
-                        return typeof(PushEventPayload);
-                    case "ReleaseEvent":
-                        return typeof(ReleaseEventPayload);
-                    case "StatusEvent":
-                        return typeof(StatusEventPayload);
-                    case "WatchEvent":
-                        return typeof(StarredEventPayload);
-                }
-                return typeof(ActivityPayload);
+                    "CheckRunEvent" => typeof(CheckRunEventPayload),
+                    "CheckSuiteEvent" => typeof(CheckSuiteEventPayload),
+                    "CommitCommentEvent" => typeof(CommitCommentPayload),
+                    "CreateEvent" => typeof(CreateEventPayload),
+                    "DeleteEvent" => typeof(DeleteEventPayload),
+                    "ForkEvent" => typeof(ForkEventPayload),
+                    "IssueCommentEvent" => typeof(IssueCommentPayload),
+                    "IssuesEvent" => typeof(IssueEventPayload),
+                    "PullRequestEvent" => typeof(PullRequestEventPayload),
+                    "PullRequestReviewEvent" => typeof(PullRequestReviewEventPayload),
+                    "PullRequestReviewCommentEvent" => typeof(PullRequestCommentPayload),
+                    "PushEvent" => typeof(PushEventPayload),
+                    "ReleaseEvent" => typeof(ReleaseEventPayload),
+                    "StatusEvent" => typeof(StatusEventPayload),
+                    "WatchEvent" => typeof(StarredEventPayload),
+                    _ => typeof(ActivityPayload),
+                };
             }
         }
     }

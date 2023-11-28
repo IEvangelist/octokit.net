@@ -40,12 +40,12 @@ namespace Octokit.Caching
                     return cachedResponse;
                 }
 
-                await TrySetCachedResponse(request, conditionalResponse);
+                _ = TrySetCachedResponse(request, conditionalResponse);
                 return conditionalResponse;
             }
 
             var response = await _httpClient.Send(request, cancellationToken);
-            await TrySetCachedResponse(request, response);
+            _ = TrySetCachedResponse(request, response);
             return response;
         }
 

@@ -3,6 +3,10 @@ using System.Collections;
 using System.IO;
 using System.Net.Http;
 
+#if NET6_0_OR_GREATER
+using System.Text.Json.Serialization.Metadata;
+#endif
+
 namespace Octokit.Internal
 {
     /// <summary>
@@ -13,7 +17,13 @@ namespace Octokit.Internal
     {
         readonly IJsonSerializer _serializer;
 
-        public JsonHttpPipeline() : this(new SimpleJsonSerializer())
+        public JsonHttpPipeline() : this(
+#if NET6_0_OR_GREATER
+            new SystemTextJsonSerializer()
+#else
+            new SimpleJsonSerializer()
+#endif
+            )
         {
         }
 
@@ -24,7 +34,11 @@ namespace Octokit.Internal
             _serializer = serializer;
         }
 
+#if NET6_0_OR_GREATER
+        public void SerializeRequest<T>(IRequest request, JsonTypeInfo<T> jsonTypeInfo)
+#else
         public void SerializeRequest(IRequest request)
+#endif
         {
             Ensure.ArgumentNotNull(request, nameof(request));
 
@@ -36,16 +50,29 @@ namespace Octokit.Internal
             if (request.Method == HttpMethod.Get || request.Body == null) return;
             if (request.Body is string || request.Body is Stream || request.Body is HttpContent) return;
 
+#if NET6_0_OR_GREATER
+            T body = (T)request.Body;
+            request.Body = _serializer.Serialize(body, jsonTypeInfo);
+#else
             request.Body = _serializer.Serialize(request.Body);
+#endif
         }
 
+#if NET6_0_OR_GREATER
+        public IApiResponse<T> DeserializeResponse<T>(IResponse response, JsonTypeInfo<T> jsonTypeInfo)
+#else
         public IApiResponse<T> DeserializeResponse<T>(IResponse response)
+#endif
         {
             Ensure.ArgumentNotNull(response, nameof(response));
 
             if (response.ContentType != null && response.ContentType.Equals("application/json", StringComparison.Ordinal))
             {
                 var body = response.Body as string;
+#if NET6_0_OR_GREATER
+                var result = _serializer.Deserialize(body, jsonTypeInfo);
+                return new ApiResponse<T>(response, result);
+#else
                 // simple json does not support the root node being empty. Will submit a pr but in the mean time....
                 if (!string.IsNullOrEmpty(body) && body != "{}")
                 {
@@ -59,9 +86,11 @@ namespace Octokit.Internal
                     {
                         body = "[" + body + "]";
                     }
+
                     var json = _serializer.Deserialize<T>(body);
                     return new ApiResponse<T>(response, json);
                 }
+#endif
             }
             return new ApiResponse<T>(response);
         }

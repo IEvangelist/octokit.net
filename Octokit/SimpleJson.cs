@@ -30,7 +30,7 @@
 // NOTE: uncomment the following line to enable DataContract support.
 //#define SIMPLE_JSON_DATACONTRACT
 
-// NOTE: uncomment the following line to enable IReadOnlyCollection<T> and IReadOnlyList<T> support.
+// NOTE: uncomment the following line to enable IReadOnlyCollection<TResult> and IReadOnlyList<TResult> support.
 //#define SIMPLE_JSON_READONLY_COLLECTIONS
 
 // NOTE: uncomment the following line to disable linq expressions/compiled lambda (better performance) instead of method.invoke().
@@ -141,7 +141,7 @@ namespace Octokit
         /// <summary>
         /// Initializes a new instance of <see cref="JsonObject"/>.
         /// </summary>
-        /// <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys, or null to use the default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> for the type of the key.</param>
+        /// <param name="comparer">The <see cref="TResult:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys, or null to use the default <see cref="TResult:System.Collections.Generic.EqualityComparer`1"/> for the type of the key.</param>
         public JsonObject(IEqualityComparer<string> comparer)
         {
             _members = new Dictionary<string, object>(comparer);
@@ -328,7 +328,7 @@ namespace Octokit
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
         /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+        /// An <see cref="TResult:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
@@ -336,10 +336,10 @@ namespace Octokit
         }
 
         /// <summary>
-        /// Returns a json <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// Returns a json <see cref="TResult:System.String"/> that represents the current <see cref="TResult:System.Object"/>.
         /// </summary>
         /// <returns>
-        /// A json <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// A json <see cref="TResult:System.String"/> that represents the current <see cref="TResult:System.Object"/>.
         /// </returns>
         public override string ToString()
         {
@@ -1363,7 +1363,15 @@ namespace Octokit
         }
 
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-        public virtual object DeserializeObject(object value, Type type)
+        public virtual object DeserializeObject(
+            object value,
+#if NET6_0_OR_GREATER
+                [DynamicallyAccessedMembers(memberTypes: 
+                    DynamicallyAccessedMemberTypes.PublicConstructors |
+                    DynamicallyAccessedMemberTypes.PublicFields |
+                    DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
+            Type type)
         {
             if (type == null) throw new ArgumentNullException("type");
             string str = value as string;

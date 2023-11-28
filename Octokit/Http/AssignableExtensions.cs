@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Octokit
@@ -9,7 +10,12 @@ namespace Octokit
         /// Determines whether the <paramref name="genericType"/> is assignable from
         /// <paramref name="givenType"/> taking into account generic definitions
         /// </summary>
-        public static bool IsAssignableToGenericType(this Type givenType, Type genericType)
+        public static bool IsAssignableToGenericType(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(memberTypes:
+                DynamicallyAccessedMemberTypes.Interfaces)]
+#endif
+            this Type givenType, Type genericType)
         {
             if (givenType == null || genericType == null)
             {
@@ -22,7 +28,12 @@ namespace Octokit
               || givenType.BaseType.IsAssignableToGenericType(genericType);
         }
 
-        private static bool HasInterfaceThatMapsToGenericTypeDefinition(this Type givenType, Type genericType)
+        private static bool HasInterfaceThatMapsToGenericTypeDefinition(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(memberTypes:
+                DynamicallyAccessedMemberTypes.Interfaces)]
+#endif
+            this Type givenType, Type genericType)
         {
             return givenType
               .GetInterfaces()

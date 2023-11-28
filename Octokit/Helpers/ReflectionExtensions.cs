@@ -2,6 +2,7 @@
 using Octokit.Reflection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -39,28 +40,46 @@ namespace Octokit
             return type.GetTypeInfo().IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
 
-        public static IEnumerable<MemberInfo> GetMember(this Type type, string name)
+        public static IEnumerable<MemberInfo> GetMember(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(memberTypes: DynamicallyAccessedMemberTypes.All)]
+#endif
+            this Type type, string name)
         {
             return type.GetTypeInfo().DeclaredMembers.Where(m => m.Name == name);
         }
 
-        public static PropertyInfo GetProperty(this Type t, string propertyName)
+        public static PropertyInfo GetProperty(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(memberTypes:
+                DynamicallyAccessedMemberTypes.PublicProperties |
+                DynamicallyAccessedMemberTypes.NonPublicProperties)]
+#endif
+            this Type type, string propertyName)
         {
-            return t.GetTypeInfo().GetDeclaredProperty(propertyName);
+            return type.GetTypeInfo().GetDeclaredProperty(propertyName);
         }
 
         public static bool IsAssignableFrom(this Type type, Type otherType)
         {
             return type.GetTypeInfo().IsAssignableFrom(otherType.GetTypeInfo());
         }
-        public static IEnumerable<PropertyInfo> GetAllProperties(this Type type)
+        public static IEnumerable<PropertyInfo> GetAllProperties(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(memberTypes:
+                DynamicallyAccessedMemberTypes.PublicProperties |
+                DynamicallyAccessedMemberTypes.NonPublicProperties)]
+#endif
+            this Type type)
         {
             var typeInfo = type.GetTypeInfo();
             var properties = typeInfo.DeclaredProperties;
 
             var baseType = typeInfo.BaseType;
 
+#pragma warning disable IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
             return baseType == null ? properties : properties.Concat(baseType.GetAllProperties());
+#pragma warning restore IL2072 // Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.
         }
 
         public static bool IsEnumeration(this Type type)

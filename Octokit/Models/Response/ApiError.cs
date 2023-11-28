@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 
+#if NET6_0_OR_GREATER
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+#endif
+
 namespace Octokit
 {
     /// <summary>
@@ -48,5 +53,10 @@ namespace Octokit
                 return string.Format(CultureInfo.InvariantCulture, "Message: {0}", Message);
             }
         }
+    }
+
+    [JsonSerializable(typeof(ApiError))]
+    internal partial class ApiErrorContext : JsonSerializerContext
+    {
     }
 }

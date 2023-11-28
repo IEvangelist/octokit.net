@@ -16,7 +16,12 @@ namespace Octokit
     public class ApiException : Exception
     {
         // This needs to be hard-coded for translating GitHub error messages.
-        static readonly IJsonSerializer _jsonSerializer = new SimpleJsonSerializer();
+        static readonly IJsonSerializer _jsonSerializer =
+#if NET6_0_OR_GREATER
+            new SystemTextJsonSerializer();
+#else
+            new SimpleJsonSerializer();
+#endif
 
         /// <summary>
         /// Constructs an instance of ApiException
@@ -129,7 +134,11 @@ namespace Octokit
             {
                 if (!string.IsNullOrEmpty(responseContent))
                 {
+#if NET6_0_OR_GREATER
+                    return _jsonSerializer.Deserialize(responseContent, ApiErrorContext.Default.ApiError) ?? new ApiError(responseContent);
+#else
                     return _jsonSerializer.Deserialize<ApiError>(responseContent) ?? new ApiError(responseContent);
+#endif
                 }
             }
             catch (Exception)
