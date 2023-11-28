@@ -41,7 +41,7 @@ namespace Octokit
         {
             get
             {
-                return string.Format(CultureInfo.InvariantCulture, "Core: {0}; Search: {1}; GraphQL: {2} ", 
+                return string.Format(CultureInfo.InvariantCulture, "Core: {0}; Search: {1}; GraphQL: {2} ",
                     Core.DebuggerDisplay, Search.DebuggerDisplay, Graphql.DebuggerDisplay);
             }
         }

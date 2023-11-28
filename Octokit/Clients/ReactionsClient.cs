@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     public class ReactionsClient : ApiClient, IReactionsClient
     {

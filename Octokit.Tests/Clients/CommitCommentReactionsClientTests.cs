@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using NSubstitute;
 using Xunit;

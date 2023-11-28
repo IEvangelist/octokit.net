@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-
-namespace Octokit
+﻿namespace Octokit
 {
     internal static class CollectionExtensions
     {

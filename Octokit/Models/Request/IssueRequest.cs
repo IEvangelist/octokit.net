@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using Octokit.Internal;
@@ -172,23 +171,23 @@ namespace Octokit
     /// </summary>
     public enum ItemStateReason
     {
-      /// <summary>
-      /// Item closed as completed.
-      /// </summary>
-      [Parameter(Value = "completed")]
-      Completed,
+        /// <summary>
+        /// Item closed as completed.
+        /// </summary>
+        [Parameter(Value = "completed")]
+        Completed,
 
-      /// <summary>
-      /// Item closed as unplanned.
-      /// </summary>
-      [Parameter(Value = "not_planned")]
-      NotPlanned,
+        /// <summary>
+        /// Item closed as unplanned.
+        /// </summary>
+        [Parameter(Value = "not_planned")]
+        NotPlanned,
 
-      /// <summary>
-      /// Item reopened.
-      /// </summary>
-      [Parameter(Value = "reopened")]
-      Reopened
+        /// <summary>
+        /// Item reopened.
+        /// </summary>
+        [Parameter(Value = "reopened")]
+        Reopened
     }
 
     /// <summary>

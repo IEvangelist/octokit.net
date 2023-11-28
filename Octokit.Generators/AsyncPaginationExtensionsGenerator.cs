@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using System.Data;
 using System.Text;
 
@@ -20,15 +17,15 @@ namespace Octokit.Generators;
 ///   * models (request and response)
 ///   * clients
 ///   * routing and related helpers
-///   TODO: Convert to use Rosyln source generators
+///  Rosyln source generators were considered, but they will not work for this 
+///  as they no longer support reading from the file system. In other words, file
+///  APIs are not available in the context of a source generator so we cannot read
+///  interfaces to generate extensions for.
 /// </remarks>
 internal partial class AsyncPaginationExtensionsGenerator
 {
 
     private const string HEADER = """
-        using System;
-        using System.Collections.Generic;
-
         /// <summary>
         /// Provides all extensions for pagination.
         /// </summary>
@@ -54,26 +51,91 @@ internal partial class AsyncPaginationExtensionsGenerator
     /// </remarks>
     public static async Task GenerateAsync(string root = "./")
     {
-        var sb = new StringBuilder(HEADER);
+        var builder = new StringBuilder(HEADER);
         var enumOptions = new EnumerationOptions { RecurseSubdirectories = true };
         var paginatedCallRegex = PaginatedCallRegex();
 
-        foreach (var file in Directory.EnumerateFiles(root, "I*.cs", enumOptions))
+        // Impose deterministic ordering on the files to ensure
+        // that the generated code has consistent ordering, thus it's easier to review updates.
+        var interfaces = Directory.EnumerateFiles(root, "I*.cs", enumOptions)
+            .Select(static file => new FileInfo(file))
+            .Where(static fi => fi.Exists)
+            .OrderBy(static fi => fi.DirectoryName)
+            .ThenBy(static fi => fi.Name)
+            .Select(static fi => fi.FullName)
+            .ToList();
+
+        Console.WriteLine($"""
+            Discovered: {interfaces.Count} interface files.
+            """);
+
+        interfaces.ForEach(file =>
         {
             var type = Path.GetFileNameWithoutExtension(file);
 
             foreach (var line in File.ReadAllLines(file))
             {
-                var match = paginatedCallRegex.Match(line);
+                var match = PaginatedCallRegex().Match(line);
 
-                if (!match.Success) { continue; }
-                sb.Append(BuildBodyFromTemplate(match, type));
+                if (match.Success is false)
+                {
+                    continue;
+                }
+
+                Console.WriteLine($"""
+                    Writing extension for {type}.{match.Groups["name"].Value}
+                    """);
+
+                builder.Append(BuildBodyFromTemplate(match, type));
             }
+        });
+
+        builder.AppendLine();
+        builder.Append(FOOTER);
+
+        await WriteToFileAsync(builder);
+    }
+
+    private static async Task WriteToFileAsync(StringBuilder builder)
+    {
+        var extensionsFilePath = FindFilePath(
+            "Octokit.AsyncPaginationExtension", // Project name
+            "Extensions.cs");                          // File name
+
+        if (File.Exists(extensionsFilePath) is false)
+        {
+            Console.Error.WriteLine(
+                $"Could not find {extensionsFilePath}!");
+
+            return;
+        }
+        else
+        {
+            Console.WriteLine($"""
+                Found the Extensions.cs file at {extensionsFilePath}.
+                """);
         }
 
-        sb.Append(FOOTER);
+        await File.WriteAllTextAsync(extensionsFilePath, builder.ToString());
 
-        await File.WriteAllTextAsync("./Octokit.AsyncPaginationExtension/Extensions.cs", sb.ToString());
+        // Find the correct location of the Extensions.cs file to overwrite.
+        static string FindFilePath(string directoryName, string name)
+        {
+            // Traverse the directory structure until we find the file.
+            var dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+            while (dir is not null)
+            {
+                var file = Path.Combine(dir.FullName, directoryName, name);
+                if (File.Exists(file))
+                {
+                    return file;
+                }
+
+                dir = dir.Parent;
+            }
+
+            return Path.Combine(Directory.GetCurrentDirectory(), directoryName, name);
+        }
     }
 
     /// <summary>

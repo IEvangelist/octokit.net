@@ -1,5 +1,4 @@
 ﻿using Octokit.Internal;
-using System;
 using System.Diagnostics;
 
 namespace Octokit
@@ -122,7 +121,7 @@ namespace Octokit
         /// </summary>
         public bool? AllowUpdateBranch { get; set; }
 
-         /// <summary>
+        /// <summary>
         /// Optional. Either true to require contributors to sign off on web-based commits, or false to not require contributors to sign off on web-based commits.
         /// The default when created is false.
         /// </summary>

@@ -90,7 +90,7 @@ namespace Octokit.Tests.Reactive
                 client.GetAllForCurrent(notificationsRequest, options);
 
                 connection.Received().Get<List<Notification>>(endpoint,
-                    Arg.Is<IDictionary<string, string>>(d => 
+                    Arg.Is<IDictionary<string, string>>(d =>
                         d.Count == 4
                         && d["all"] == "true" && d["participating"] == "false"
                         && d["page"] == "1" && d["per_page"] == "1"));

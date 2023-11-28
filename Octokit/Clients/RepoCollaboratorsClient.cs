@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub's Collaborators API.
@@ -297,7 +294,7 @@ namespace Octokit
             Ensure.ArgumentNotNullOrEmptyString(owner, nameof(owner));
             Ensure.ArgumentNotNullOrEmptyString(name, nameof(name));
             Ensure.ArgumentNotNullOrEmptyString(user, nameof(user));
-            
+
             return await ApiConnection.Put<RepositoryInvitation>(ApiUrls.RepoCollaborator(owner, name, user), permission).ConfigureAwait(false);
         }
 

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Octokit;
+﻿using Octokit;
 using Octokit.Internal;
 using Xunit;
 

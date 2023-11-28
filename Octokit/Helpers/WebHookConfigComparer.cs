@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Octokit
+﻿namespace Octokit
 {
     public class WebHookConfigComparer : IEqualityComparer<KeyValuePair<string, string>>
     {

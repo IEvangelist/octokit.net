@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
 
 namespace Octokit
 {
@@ -349,7 +347,7 @@ namespace Octokit
         /// <remarks>
         /// See the <a href="https://docs.github.com/en/rest/deployments/environments/">Environments API documentation</a> for more details
         /// </remarks>
-        IRepositoryDeployEnvironmentsClient Environment { get;  }
+        IRepositoryDeployEnvironmentsClient Environment { get; }
 
         /// <summary>
         /// Client for GitHub's Repository Statistics API.

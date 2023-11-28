@@ -1,7 +1,4 @@
 ﻿using Octokit.Models.Response;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Octokit
 {

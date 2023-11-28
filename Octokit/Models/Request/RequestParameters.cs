@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
 using Octokit.Internal;
 
@@ -92,7 +89,18 @@ namespace Octokit
                 : null;
         }
 
-        static string GetParameterAttributeValueForEnumName(Type enumType, string name)
+        static string GetParameterAttributeValueForEnumName(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(
+                DynamicallyAccessedMemberTypes.PublicConstructors
+                | DynamicallyAccessedMemberTypes.PublicMethods
+                | DynamicallyAccessedMemberTypes.PublicFields
+                | DynamicallyAccessedMemberTypes.PublicNestedTypes
+                | DynamicallyAccessedMemberTypes.PublicProperties
+                | DynamicallyAccessedMemberTypes.PublicEvents)]
+#endif
+            Type enumType,
+            string name)
         {
             var member = enumType.GetMember(name).FirstOrDefault();
 

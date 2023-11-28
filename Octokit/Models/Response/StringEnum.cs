@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -8,7 +7,15 @@ namespace Octokit
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-    public struct StringEnum<TEnum> : IEquatable<StringEnum<TEnum>>
+    public struct StringEnum<
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(
+                DynamicallyAccessedMemberTypes.PublicConstructors
+                | DynamicallyAccessedMemberTypes.PublicFields
+                | DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
+    TEnum
+    > : IEquatable<StringEnum<TEnum>>
         where TEnum : struct
     {
         private readonly string _stringValue;
@@ -71,7 +78,9 @@ namespace Octokit
             try
             {
                 // Use the SimpleJsonSerializer to parse the string to Enum according to the GitHub Api strategy
-                value = (TEnum)SimpleJsonSerializer.DeserializeEnum(StringValue, typeof(TEnum));
+                value = (TEnum)SimpleJsonSerializer.DeserializeEnum(
+                    StringValue,
+                    typeof(TEnum));
 
                 // cache the parsed value for subsequent calls.
                 _parsedValue = value;

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reactive;
-
-namespace Octokit.Reactive
+﻿namespace Octokit.Reactive
 {
     public interface IObservableReactionsClient
     {

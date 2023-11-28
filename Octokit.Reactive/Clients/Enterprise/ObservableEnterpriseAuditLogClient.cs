@@ -1,9 +1,6 @@
 ﻿using Octokit.Models.Request.Enterprise;
 using Octokit.Reactive.Internal;
 using System;
-using System.Collections.Generic;
-using System.Reactive.Threading.Tasks;
-using System.Threading.Tasks;
 
 namespace Octokit.Reactive
 {

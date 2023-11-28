@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using System.Linq;
 using Octokit.Internal;
 using Xunit;
 
 namespace Octokit.Tests.Models
 {
-  public class InstallationResponseTests
-  {
-    [Fact]
-    public void CanBeDeserialized()
+    public class InstallationResponseTests
     {
-      const string json = @"[
+        [Fact]
+        public void CanBeDeserialized()
+        {
+            const string json = @"[
   {
     ""id"": 1,
     ""account"": {
@@ -63,22 +62,22 @@ namespace Octokit.Tests.Models
   }
 ]";
 
-      var serializer = new SimpleJsonSerializer();
+            var serializer = new SimpleJsonSerializer();
 
-      var installations = serializer.Deserialize<IReadOnlyList<Installation>>(json);
+            var installations = serializer.Deserialize<IReadOnlyList<Installation>>(json);
 
-      Assert.NotNull(installations);
-      Assert.NotEmpty(installations);
-      Assert.Single(installations);
-      Assert.Null(installations[0].SuspendedAt);
-      Assert.Null(installations[0].SuspendedBy);
+            Assert.NotNull(installations);
+            Assert.NotEmpty(installations);
+            Assert.Single(installations);
+            Assert.Null(installations[0].SuspendedAt);
+            Assert.Null(installations[0].SuspendedBy);
 
-    }
+        }
 
-    [Fact]
-    public void CanBeDeserializedWithSuspendedAtValues()
-    {
-      const string json = @"[
+        [Fact]
+        public void CanBeDeserializedWithSuspendedAtValues()
+        {
+            const string json = @"[
   {
     ""id"": 1,
     ""account"": {
@@ -150,16 +149,16 @@ namespace Octokit.Tests.Models
   }
 ]";
 
-      var serializer = new SimpleJsonSerializer();
+            var serializer = new SimpleJsonSerializer();
 
-      var installations = serializer.Deserialize<IReadOnlyList<Installation>>(json);
+            var installations = serializer.Deserialize<IReadOnlyList<Installation>>(json);
 
-      Assert.NotNull(installations);
-      Assert.NotEmpty(installations);
-      Assert.Single(installations);
-      Assert.NotNull(installations[0].SuspendedAt);
-      Assert.NotNull(installations[0].SuspendedBy);
+            Assert.NotNull(installations);
+            Assert.NotEmpty(installations);
+            Assert.Single(installations);
+            Assert.NotNull(installations[0].SuspendedAt);
+            Assert.NotNull(installations[0].SuspendedBy);
 
+        }
     }
-  }
 }

@@ -137,7 +137,7 @@ namespace Octokit.Tests.Reactive
 
                 Assert.Throws<ArgumentNullException>(() => client.RestoreForOrg("owner", PackageType.Npm, null, 5));
                 Assert.Throws<ArgumentException>(() => client.RestoreForOrg("owner", PackageType.Npm, "", 5));
-                
+
                 Assert.Throws<ArgumentException>(() => client.RestoreForOrg("owner", PackageType.Npm, "asd", 0));
             }
         }

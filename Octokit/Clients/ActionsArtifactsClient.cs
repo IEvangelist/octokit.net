@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub's Actions Artifacts API.
@@ -25,7 +22,7 @@ namespace Octokit
         {
             Ensure.ArgumentNotNullOrEmptyString(owner, nameof(owner));
             Ensure.ArgumentNotNullOrEmptyString(repository, nameof(repository));
-            
+
             return ApiConnection.Get<ListArtifactsResponse>(ApiUrls.ListArtifacts(owner, repository), listArtifactsRequest?.ToParametersDictionary());
         }
 
@@ -36,7 +33,7 @@ namespace Octokit
             Ensure.ArgumentNotNullOrEmptyString(owner, nameof(owner));
             Ensure.ArgumentNotNullOrEmptyString(repository, nameof(repository));
             Ensure.ArgumentNotNullOrDefault(artifactId, nameof(artifactId));
-            
+
             return ApiConnection.Get<Artifact>(ApiUrls.Artifact(owner, repository, artifactId), null);
         }
 
@@ -59,7 +56,7 @@ namespace Octokit
             Ensure.ArgumentNotNullOrEmptyString(repository, nameof(repository));
             Ensure.ArgumentNotNullOrDefault(artifactId, nameof(artifactId));
             Ensure.ArgumentNotNullOrEmptyString(repository, nameof(archiveFormat));
-            
+
             return ApiConnection.GetRawStream(ApiUrls.DownloadArtifact(owner, repository, artifactId, archiveFormat), null);
         }
 

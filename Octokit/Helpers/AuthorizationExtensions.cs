@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// Represents operations to simplify triggering the authorization flow

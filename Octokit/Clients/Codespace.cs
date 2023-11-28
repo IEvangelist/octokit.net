@@ -1,7 +1,5 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 
 namespace Octokit
 {
@@ -14,7 +12,7 @@ namespace Octokit
         public User BillableOwner { get; private set; }
         public Repository Repository { get; private set; }
         public Machine Machine { get; private set; }
-        public DateTime CreatedAt { get;private set; }
+        public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
         public DateTime LastUsedAt { get; private set; }
         public StringEnum<CodespaceState> State { get; private set; }

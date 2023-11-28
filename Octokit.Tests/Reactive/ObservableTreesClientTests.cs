@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using NSubstitute;
 using Octokit.Reactive;

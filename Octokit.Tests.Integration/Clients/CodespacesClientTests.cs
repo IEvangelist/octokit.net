@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Octokit;
-using Octokit.Tests.Helpers;
 using Octokit.Tests.Integration;
 using Xunit;
 

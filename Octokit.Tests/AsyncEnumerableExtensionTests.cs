@@ -72,7 +72,7 @@ namespace Octokit.Tests
             public void RejectInvalidValues()
             {
                 var client = Substitute.For<IRepositoriesClient>();
-                
+
                 Assert.Throws<ArgumentOutOfRangeException>(() => client.GetAllForUserAsync("fake", -1));
                 Assert.Throws<ArgumentOutOfRangeException>(() => client.GetAllForUserAsync("fake", 0));
             }

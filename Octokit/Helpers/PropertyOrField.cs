@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using Octokit.Helpers;
 using Octokit.Internal;
 using Octokit.Reflection;

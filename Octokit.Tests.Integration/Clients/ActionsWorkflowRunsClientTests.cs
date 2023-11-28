@@ -47,7 +47,7 @@ jobs:
             Assert.NotNull(runs.WorkflowRuns);
             Assert.NotEmpty(runs.WorkflowRuns);
 
-            runs = await fixture.List(owner, name, new WorkflowRunsRequest() {  Branch = "main" });
+            runs = await fixture.List(owner, name, new WorkflowRunsRequest() { Branch = "main" });
 
             Assert.NotNull(runs);
             Assert.NotEqual(0, runs.TotalCount);
@@ -264,7 +264,7 @@ jobs:
         {
             var owner = context.Repository.Owner.Login;
             var name = context.Repository.Name;
-            
+
             (var workflowFileName, var runId) = await CreateWorkflowAndWaitForFirstRun(
                 github,
                 context,

@@ -91,7 +91,7 @@ namespace Octokit.Tests.Conventions
 
             return lastParameter != null
                    && (
-                        (lastParameter.Name == "options" && lastParameter.ParameterType == typeof(ApiOptions)) || 
+                        (lastParameter.Name == "options" && lastParameter.ParameterType == typeof(ApiOptions)) ||
                         (lastParameter.Name == "auditLogApiOptions" && lastParameter.ParameterType == typeof(AuditLogApiOptions))
                       );
         }

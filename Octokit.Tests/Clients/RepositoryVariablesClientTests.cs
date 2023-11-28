@@ -128,7 +128,7 @@ namespace Octokit.Tests.Clients
                 await Assert.ThrowsAsync<ArgumentNullException>(() => client.Create("owner", "repo", new Variable("variableName", null)));
 
                 await Assert.ThrowsAsync<ArgumentException>(() => client.Create("", "repo", updatedVariable));
-                await Assert.ThrowsAsync<ArgumentException>(() => client.Create("owner", "",  updatedVariable));
+                await Assert.ThrowsAsync<ArgumentException>(() => client.Create("owner", "", updatedVariable));
                 await Assert.ThrowsAsync<ArgumentException>(() => client.Create("owner", "repo", new Variable("", "variableValue")));
                 await Assert.ThrowsAsync<ArgumentException>(() => client.Create("owner", "repo", new Variable("variableName", "")));
             }

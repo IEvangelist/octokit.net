@@ -17,6 +17,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>GitHub API Octokit linqpad-samples dotnetcore</PackageTags>
     <Copyright>Copyright GitHub 2017</Copyright>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))

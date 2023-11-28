@@ -294,7 +294,7 @@ namespace Octokit.Tests.Clients
                 var client = new ActionsWorkflowRunsClient(apiConnection);
 
                 var actual = await client.GetAttemptLogs("fake", "repo", 123, 456);
-                
+
                 Assert.Equal(new byte[] { 1, 2, 3, 4 }, actual);
             }
 

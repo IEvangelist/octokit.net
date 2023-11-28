@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub's Repository Secrets API.
@@ -33,7 +30,7 @@ namespace Octokit
         /// <param name="repoName">The name of the repository</param>
         /// <exception cref="ApiException">Thrown when a general API error occurs.</exception>
         /// <returns>A <see cref="RepositorySecretsCollection"/> instance for the list of repository secrets.</returns>
-        Task<RepositorySecretsCollection> GetAll (string owner, string repoName);
+        Task<RepositorySecretsCollection> GetAll(string owner, string repoName);
 
         /// <summary>
         /// Get a secret from a repository.

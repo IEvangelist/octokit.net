@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using NSubstitute;
-using Octokit.Internal;
 using Octokit.Reactive;
 using Xunit;
 

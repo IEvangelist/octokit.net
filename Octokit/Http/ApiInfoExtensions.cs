@@ -1,5 +1,3 @@
-using System;
-
 namespace Octokit
 {
     public static class ApiInfoExtensions

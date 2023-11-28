@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Octokit.Internal
+﻿namespace Octokit.Internal
 {
     /// <summary>
     /// Indicate to the serializer that this property or field

@@ -211,8 +211,8 @@ namespace Octokit.Tests.Clients
             {
                 var connection = Substitute.For<IApiConnection>();
                 var client = new OrganizationsClient(connection);
-                
-                await client.GetAllAuthorizations("fake", new ApiOptions() { PageCount = 1, PageSize = 1, StartPage = 1});
+
+                await client.GetAllAuthorizations("fake", new ApiOptions() { PageCount = 1, PageSize = 1, StartPage = 1 });
 
                 connection.Received().GetAll<OrganizationCredential>(Arg.Is<Uri>(u => u.ToString() == "orgs/fake/credential-authorizations"), Args.ApiOptions);
             }
@@ -254,7 +254,7 @@ namespace Octokit.Tests.Clients
             {
                 var connection = Substitute.For<IApiConnection>();
                 var client = new OrganizationsClient(connection);
-                
+
                 await Assert.ThrowsAsync<ArgumentNullException>(() => client.GetAllAuthorizations(null, new ApiOptions()));
                 await Assert.ThrowsAsync<ArgumentException>(() => client.GetAllAuthorizations("", new ApiOptions()));
 

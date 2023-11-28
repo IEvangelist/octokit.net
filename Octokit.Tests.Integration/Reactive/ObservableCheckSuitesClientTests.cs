@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Reactive.Linq;
+﻿using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Octokit.Reactive;
 using Octokit.Tests.Integration.Helpers;

@@ -49,10 +49,8 @@
 #define SIMPLE_JSON_TYPEINFO
 #endif
 
-using System;
 using System.CodeDom.Compiler;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -578,6 +576,9 @@ namespace Octokit
             return success;
         }
 
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
+#endif
         public static object DeserializeObject(string json, Type type, IJsonSerializerStrategy jsonSerializerStrategy)
         {
             object jsonObject = DeserializeObject(json);
@@ -586,16 +587,25 @@ namespace Octokit
                        : (jsonSerializerStrategy ?? CurrentJsonSerializerStrategy).DeserializeObject(jsonObject, type);
         }
 
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
+#endif
         public static object DeserializeObject(string json, Type type)
         {
             return DeserializeObject(json, type, null);
         }
 
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
+#endif
         public static T DeserializeObject<T>(string json, IJsonSerializerStrategy jsonSerializerStrategy)
         {
             return (T)DeserializeObject(json, typeof(T), jsonSerializerStrategy);
         }
 
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
+#endif
         public static T DeserializeObject<T>(string json)
         {
             return (T)DeserializeObject(json, typeof(T), null);

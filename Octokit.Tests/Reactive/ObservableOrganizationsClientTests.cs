@@ -228,6 +228,6 @@ namespace Octokit.Tests.Reactive
                 Assert.Throws<ArgumentNullException>(() => client.GetAllAuthorizations("asd", (ApiOptions)null));
                 Assert.Throws<ArgumentNullException>(() => client.GetAllAuthorizations("asd", "asd", null));
             }
-        }   
+        }
     }
 }

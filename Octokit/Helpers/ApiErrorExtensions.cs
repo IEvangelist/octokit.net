@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace Octokit
+﻿namespace Octokit
 {
     internal static class ApiErrorExtensions
     {

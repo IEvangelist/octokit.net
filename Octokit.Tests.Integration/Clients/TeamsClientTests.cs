@@ -603,7 +603,7 @@ public class TeamsClientTests
             using (var repoContext = await github.CreateOrganizationRepositoryContext(Helper.Organization, new NewRepository(Helper.MakeNameWithTimestamp("team-repository"))))
             {
                 var teamRepositories = await github.Organization.Team.GetAllRepositories(teamContext.TeamId);
-                
+
                 Assert.Empty(teamRepositories);
 
                 await github.Organization.Team.AddOrUpdateTeamRepositoryPermissions(
@@ -682,7 +682,7 @@ public class TeamsClientTests
             }
         }
     }
-    
+
     public class TheGetByNameMethod
     {
         [OrganizationTest]

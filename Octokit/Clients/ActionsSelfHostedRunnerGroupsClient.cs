@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub's Actions Self-hosted runner groups API.
@@ -255,5 +251,5 @@ namespace Octokit
 
             return ApiConnection.GetAll<Repository>(ApiUrls.ActionsListOrganizationRunnerGroupRepositories(org, runnerGroupId), options);
         }
-  }
+    }
 }

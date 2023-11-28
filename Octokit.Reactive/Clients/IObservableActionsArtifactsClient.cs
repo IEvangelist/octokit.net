@@ -13,7 +13,7 @@ namespace Octokit.Reactive
     public interface IObservableActionsArtifactsClient
     {
         IObservable<ListArtifactsResponse> ListArtifacts(string owner, string repository, ListArtifactsRequest listArtifactsRequest = null);
-        
+
         /// <summary>
         /// Gets the specified artifact
         /// </summary>
@@ -22,7 +22,7 @@ namespace Octokit.Reactive
         /// <param name="artifactId"></param>
         /// <returns></returns>
         IObservable<Artifact> GetArtifact(string owner, string repository, long artifactId);
-        
+
         /// <summary>
         /// Deletes the specified artifact
         /// </summary>
@@ -31,7 +31,7 @@ namespace Octokit.Reactive
         /// <param name="artifactId"></param>
         /// <returns></returns>
         IObservable<Unit> DeleteArtifact(string owner, string repository, long artifactId);
-        
+
         /// <summary>
         /// Downloads the specified artifact's contents
         /// </summary>
@@ -41,7 +41,7 @@ namespace Octokit.Reactive
         /// <param name="archiveFormat"></param>
         /// <returns></returns>
         IObservable<Stream> DownloadArtifact(string owner, string repository, long artifactId, string archiveFormat);
-        
+
         /// <summary>
         /// Lists the artifacts for a specific workflow run
         /// </summary>

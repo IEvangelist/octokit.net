@@ -1,5 +1,3 @@
-using System;
-
 namespace Octokit
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]

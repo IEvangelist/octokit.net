@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Octokit.Reactive;
 using Octokit.Tests.Integration;
-using Xunit;
 
 public class ObservableNotificationsClientTests
 {

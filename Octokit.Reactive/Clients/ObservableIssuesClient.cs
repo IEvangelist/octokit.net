@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive;
 using System.Reactive.Threading.Tasks;
 using Octokit.Reactive.Internal;
 
@@ -479,6 +478,6 @@ namespace Octokit.Reactive
             return _client.Update(repositoryId, number, issueUpdate).ToObservable();
         }
 
-        
+
     }
 }

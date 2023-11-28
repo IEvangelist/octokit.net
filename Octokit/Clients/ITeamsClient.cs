@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Octokit
 {
@@ -354,7 +351,7 @@ namespace Octokit
         /// <exception cref="ApiException">Thrown when a general API error occurs.</exception>
         /// <returns></returns>
         Task RemoveRepositoryFromATeam(string org, string teamSlug, string owner, string repo);
-        
+
         /// <summary>
         /// Get a team by slug name
         /// </summary>

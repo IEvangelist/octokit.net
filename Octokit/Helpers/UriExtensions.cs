@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// Extensions for working with Uris
@@ -89,7 +85,7 @@ namespace Octokit
                 }
             }
 
-            Func<string, string, string> mapValueFunc = (key, value) => (key == "q" || key =="before" || key=="after") ? value : Uri.EscapeDataString(value);
+            Func<string, string, string> mapValueFunc = (key, value) => (key == "q" || key == "before" || key == "after") ? value : Uri.EscapeDataString(value);
 
             string query = string.Join("&", p.Select(kvp => kvp.Key + "=" + mapValueFunc(kvp.Key, kvp.Value)));
             if (uri.IsAbsoluteUri)

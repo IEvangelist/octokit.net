@@ -1,5 +1,4 @@
-﻿using System;
-using Octokit;
+﻿using Octokit;
 using Octokit.Tests.Helpers;
 using Xunit;
 

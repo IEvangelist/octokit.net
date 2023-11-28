@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub Applications Installations API.

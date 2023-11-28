@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Net;
-using System.Threading.Tasks;
+﻿using System.Net;
 namespace Octokit
 {
-	/// <summary>
-	/// A client for GitHub's Repository Branches API.
-	/// </summary>
-	/// <remarks>
-	/// See the <a href="https://developer.github.com/v3/repos/branches">Repository Branches API documentation</a> for more details.
-	/// </remarks>
+    /// <summary>
+    /// A client for GitHub's Repository Branches API.
+    /// </summary>
+    /// <remarks>
+    /// See the <a href="https://developer.github.com/v3/repos/branches">Repository Branches API documentation</a> for more details.
+    /// </remarks>
     public class RepositoryBranchesClient : ApiClient, IRepositoryBranchesClient
     {
         /// <summary>

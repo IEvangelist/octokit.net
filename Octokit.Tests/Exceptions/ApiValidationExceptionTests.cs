@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using Xunit;
 
 using static Octokit.Internal.TestSetup;

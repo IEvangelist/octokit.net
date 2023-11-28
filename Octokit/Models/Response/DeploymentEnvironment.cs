@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics;
-using System.Text;
 using System.Globalization;
 
 namespace Octokit.Models.Response
@@ -33,7 +30,7 @@ namespace Octokit.Models.Response
         /// <summary>
         /// GraphQL Node Id
         /// </summary>
-        public string NodeId{ get; private set; }
+        public string NodeId { get; private set; }
 
         /// <summary>
         /// Environment Name

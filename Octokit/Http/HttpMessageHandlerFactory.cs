@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using System.Net.Http;
 
 namespace Octokit.Internal
 {

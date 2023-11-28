@@ -1,5 +1,4 @@
-﻿using System;
-using Octokit.Caching;
+﻿using Octokit.Caching;
 using Octokit.Internal;
 
 namespace Octokit

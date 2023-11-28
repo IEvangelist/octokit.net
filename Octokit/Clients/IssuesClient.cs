@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub's Issues API.
@@ -497,6 +494,6 @@ namespace Octokit
             Ensure.ArgumentNotNull(issueUpdate, nameof(issueUpdate));
 
             return ApiConnection.Patch<Issue>(ApiUrls.Issue(repositoryId, number), issueUpdate);
-        }        
+        }
     }
 }

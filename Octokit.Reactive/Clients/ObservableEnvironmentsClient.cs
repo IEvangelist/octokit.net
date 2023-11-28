@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reactive.Threading.Tasks;
 using Octokit.Models.Response;
 using Octokit.Reactive.Internal;
 

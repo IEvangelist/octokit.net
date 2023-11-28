@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Octokit
+﻿namespace Octokit
 {
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class ExcludeFromPaginationApiOptionsConventionTestAttribute : Attribute

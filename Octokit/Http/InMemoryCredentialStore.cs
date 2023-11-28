@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Octokit.Internal
+﻿namespace Octokit.Internal
 {
     /// <summary>
     /// Abstraction for interacting with credentials

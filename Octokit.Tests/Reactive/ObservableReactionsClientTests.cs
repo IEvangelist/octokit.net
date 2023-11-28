@@ -1,8 +1,5 @@
-﻿using NSubstitute;
-using Octokit.Reactive;
+﻿using Octokit.Reactive;
 using System;
-using System.Reactive.Threading.Tasks;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Octokit.Tests.Reactive

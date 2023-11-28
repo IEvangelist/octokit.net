@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Octokit.Tests.Integration;
-using Xunit;
 
 public class NotificationsClientTests
 {

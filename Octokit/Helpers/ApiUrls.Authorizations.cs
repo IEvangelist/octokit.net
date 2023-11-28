@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Octokit
+﻿namespace Octokit
 {
     public static partial class ApiUrls
     {

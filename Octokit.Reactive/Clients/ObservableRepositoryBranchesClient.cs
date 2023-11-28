@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
-using System.Threading.Tasks;
 
 using Octokit.Reactive.Internal;
 
@@ -1043,5 +1042,5 @@ namespace Octokit.Reactive
 
             return _client.RenameBranch(owner, repository, branch, newName).ToObservable();
         }
-	}
+    }
 }

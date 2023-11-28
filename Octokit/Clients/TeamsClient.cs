@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Threading.Tasks;
-using System.Collections.Generic;
+﻿using System.Net;
 
 namespace Octokit
 {
@@ -596,7 +593,7 @@ namespace Octokit
                 var response = await ApiConnection.Get<TeamRepository>(endpoint);
                 return response == null;
             }
-            catch(NotFoundException)
+            catch (NotFoundException)
             {
                 return false;
             }
@@ -704,7 +701,7 @@ namespace Octokit
         {
             Ensure.ArgumentNotNullOrEmptyString(org, nameof(org));
             Ensure.ArgumentNotNullOrEmptyString(teamSlug, nameof(teamSlug));
-            
+
             var endpoint = ApiUrls.TeamsByOrganizationAndSlug(org, teamSlug);
             return ApiConnection.Get<Team>(endpoint);
         }

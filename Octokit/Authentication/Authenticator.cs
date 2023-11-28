@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Octokit.Internal
+﻿namespace Octokit.Internal
 {
     class Authenticator
     {

@@ -53,7 +53,7 @@ namespace Octokit
         /// <summary>
         /// The number of seats filled on this plan
         /// </summary>
-        public int FilledSeats { get; private set; } 
+        public int FilledSeats { get; private set; }
 
         /// <summary>
         /// The number of seats available for this plan

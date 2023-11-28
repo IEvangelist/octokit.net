@@ -78,7 +78,7 @@ namespace Octokit.Tests.Reactive
                 var gitHubClient = Substitute.For<IGitHubClient>();
                 var client = new ObservableRepositorySecretsClient(gitHubClient);
 
-                await client.Get("owner", "repo","secret");
+                await client.Get("owner", "repo", "secret");
 
                 gitHubClient.Received().Repository.Actions.Secrets.Get("owner", "repo", "secret");
             }

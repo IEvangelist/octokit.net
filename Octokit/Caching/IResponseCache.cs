@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Octokit.Internal;
+﻿using Octokit.Internal;
 
 namespace Octokit.Caching
 {

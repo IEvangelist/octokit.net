@@ -143,14 +143,14 @@ namespace Octokit.Tests
                 var responseCache = Substitute.For<IResponseCache>();
                 var client = new GitHubClient(new ProductHeaderValue("OctokitTests"));
                 Assert.IsType<Connection>(client.Connection);
-                var existingConnection = (Connection) client.Connection;
+                var existingConnection = (Connection)client.Connection;
                 var existingHttpClient = existingConnection._httpClient;
 
                 client.ResponseCache = responseCache;
 
                 Assert.Equal(existingConnection, client.Connection);
                 Assert.IsType<CachingHttpClient>(existingConnection._httpClient);
-                var cachingHttpClient = (CachingHttpClient) existingConnection._httpClient;
+                var cachingHttpClient = (CachingHttpClient)existingConnection._httpClient;
                 Assert.Equal(existingHttpClient, cachingHttpClient._httpClient);
                 Assert.Equal(responseCache, cachingHttpClient._responseCache);
             }
@@ -162,7 +162,7 @@ namespace Octokit.Tests
 
                 var client = new GitHubClient(new ProductHeaderValue("OctokitTests"));
                 Assert.IsType<Connection>(client.Connection);
-                var existingConnection = (Connection) client.Connection;
+                var existingConnection = (Connection)client.Connection;
                 var existingHttpClient = existingConnection._httpClient;
                 client.ResponseCache = Substitute.For<IResponseCache>();
 
@@ -170,7 +170,7 @@ namespace Octokit.Tests
 
                 Assert.Equal(existingConnection, client.Connection);
                 Assert.IsType<CachingHttpClient>(existingConnection._httpClient);
-                var cachingHttpClient = (CachingHttpClient) existingConnection._httpClient;
+                var cachingHttpClient = (CachingHttpClient)existingConnection._httpClient;
                 Assert.Equal(existingHttpClient, cachingHttpClient._httpClient);
                 Assert.Equal(responseCache, cachingHttpClient._responseCache);
             }

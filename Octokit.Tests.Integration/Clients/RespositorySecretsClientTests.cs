@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Versioning;
-using System.Text;
-using System.Threading.Tasks;
-using Octokit;
-using Octokit.Tests.Integration;
-using Octokit.Tests.Integration.Helpers;
+﻿using System.Threading.Tasks;
 using Xunit;
 
 #if SODIUM_CORE_AVAILABLE

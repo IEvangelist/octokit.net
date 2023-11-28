@@ -81,7 +81,7 @@ jobs:
             var owner = context.Repository.Owner.Login;
             var name = context.Repository.Name;
             (var workflowFileName, var runId) = await CreateWorkflowAndWaitForCompletion(github, context);
-            
+
             var jobs = await fixture.List(owner, name, runId, 1);
 
             Assert.NotNull(jobs);

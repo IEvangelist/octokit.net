@@ -4,10 +4,10 @@ using Xunit;
 
 public class CollaboratorPermissionResponseTests
 {
-  [Fact]
-  public void CanDeserialize()
-  {
-    const string json = @"{
+    [Fact]
+    public void CanDeserialize()
+    {
+        const string json = @"{
       ""permission"": ""read"",
       ""user"": {
         ""login"": ""octocat"",
@@ -40,13 +40,13 @@ public class CollaboratorPermissionResponseTests
       ""role_name"": ""read""
     }";
 
-    var actual = new SimpleJsonSerializer().Deserialize<CollaboratorPermissionResponse>(json);
+        var actual = new SimpleJsonSerializer().Deserialize<CollaboratorPermissionResponse>(json);
 
-    Assert.Equal("read", actual.Permission);
-    Assert.Equal("octocat", actual.Collaborator.Login);
-    Assert.Equal(583231, actual.Collaborator.Id);
-    Assert.Equal("read", actual.RoleName);
+        Assert.Equal("read", actual.Permission);
+        Assert.Equal("octocat", actual.Collaborator.Login);
+        Assert.Equal(583231, actual.Collaborator.Id);
+        Assert.Equal("read", actual.RoleName);
 
-    Assert.Equal("Collaborator: 583231 Permission: read RoleName: read", actual.DebuggerDisplay);
-  }
+        Assert.Equal("Collaborator: 583231 Permission: read RoleName: read", actual.DebuggerDisplay);
+    }
 }

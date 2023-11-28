@@ -1,5 +1,4 @@
 ﻿using Octokit.Internal;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Octokit
@@ -43,11 +42,11 @@ namespace Octokit
             public string Kind { get; private set; }
 
             public string Source { get; private set; }
-            
+
             public string Suggestion { get; private set; }
 
             public string Message { get; private set; }
-            
+
             public string Path { get; private set; }
 
             internal string DebuggerDisplay => new SimpleJsonSerializer().Serialize(this);

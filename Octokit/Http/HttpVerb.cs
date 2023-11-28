@@ -1,6 +1,4 @@
-﻿using System.Net.Http;
-
-namespace Octokit.Internal
+﻿namespace Octokit.Internal
 {
     internal static class HttpVerb
     {

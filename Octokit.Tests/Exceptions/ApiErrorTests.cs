@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Octokit.Internal;
+﻿using Octokit.Internal;
 using Xunit;
 
 namespace Octokit.Tests.Exceptions

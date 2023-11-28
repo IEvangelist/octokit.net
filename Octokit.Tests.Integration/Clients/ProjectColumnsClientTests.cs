@@ -3,7 +3,6 @@ using Octokit.Tests.Integration;
 using Octokit.Tests.Integration.Helpers;
 using System;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 

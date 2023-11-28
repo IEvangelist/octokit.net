@@ -1,5 +1,4 @@
 ﻿using Octokit.Models.Response;
-using System.Threading.Tasks;
 
 namespace Octokit
 {

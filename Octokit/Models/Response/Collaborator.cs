@@ -48,7 +48,7 @@ namespace Octokit
         public string NodeId { get; protected set; }
 
         public string AvatarUrl { get; protected set; }
-        
+
         public string GravatarUrl { get; protected set; }
 
         public string Url { get; protected set; }

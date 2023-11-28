@@ -17,8 +17,9 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>GitHub API Octokit linqpad-samples dotnetcore</PackageTags>
     <Copyright>Copyright GitHub 2017</Copyright>
-    <LangVersion>9</LangVersion>
+    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

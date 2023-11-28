@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-
-namespace Octokit.Internal
+﻿namespace Octokit.Internal
 {
     public interface IRequest
     {

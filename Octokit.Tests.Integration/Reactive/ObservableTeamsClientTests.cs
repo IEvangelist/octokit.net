@@ -520,7 +520,7 @@ public class ObservableTeamsClientTests
             }
         }
     }
-    
+
     public class TheAddOrUpdateTeamRepositoryPermissionsMethod
     {
         private readonly IObservableGitHubClient _github;
@@ -586,7 +586,7 @@ public class ObservableTeamsClientTests
                 teamRepository = await _github.Organization.Team
                     .GetAllRepositories(teamContext.TeamId)
                     .FirstOrDefaultAsync(x => x.Id == repoContext.RepositoryId);
-                
+
                 Assert.True(teamRepository.Permissions.Maintain);
                 Assert.False(teamRepository.Permissions.Admin);
             }

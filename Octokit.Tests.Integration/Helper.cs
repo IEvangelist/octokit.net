@@ -106,7 +106,7 @@ namespace Octokit.Tests.Integration
         }
 
         public static string UserName { get; private set; }
-        
+
         public static string Organization { get; private set; }
 
         public static bool HasNoOrganization => Organization == null;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Octokit.Helpers;
 using Octokit.Tests.Integration.Helpers;

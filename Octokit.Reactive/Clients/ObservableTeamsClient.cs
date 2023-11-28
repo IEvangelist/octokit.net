@@ -245,7 +245,7 @@ namespace Octokit.Reactive
         {
             Ensure.ArgumentNotNull(org, nameof(org));
             Ensure.ArgumentNotNull(teamSlug, nameof(teamSlug));
-            
+
             return _client.Delete(org, teamSlug).ToObservable();
         }
 

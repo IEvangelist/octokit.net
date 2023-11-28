@@ -143,7 +143,7 @@ namespace Octokit.Tests.Http
                 Assert.Equal(httpStatusCode, response.StatusCode);
                 Assert.Null(response.ContentType);
             }
-            
+
             [Fact]
             public async Task BuildsStreamResponseFromResponseMessage()
             {
@@ -158,7 +158,7 @@ namespace Octokit.Tests.Http
                 var response = await tester.BuildResponseTester(responseMessage);
 
                 var memoryStream = Assert.IsType<MemoryStream>(response.Body);
-                
+
                 Assert.Equal(new byte[] { 0, 1, 1, 0, 1 }, memoryStream.ToArray());
                 Assert.Equal("image/png", response.ContentType);
             }

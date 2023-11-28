@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A Client for the GitHub API v3. You can read more about the API here: http://developer.github.com.

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -987,7 +986,7 @@ namespace Octokit.Tests.Http
                 connection.ResponseCache = responseCache;
 
                 Assert.IsType<CachingHttpClient>(connection._httpClient);
-                var cachingHttpClient = (CachingHttpClient) connection._httpClient;
+                var cachingHttpClient = (CachingHttpClient)connection._httpClient;
                 Assert.Equal(httpClient, cachingHttpClient._httpClient);
                 Assert.Equal(responseCache, cachingHttpClient._responseCache);
             }
@@ -1007,7 +1006,7 @@ namespace Octokit.Tests.Http
                 connection.ResponseCache = responseCache;
 
                 Assert.IsType<CachingHttpClient>(connection._httpClient);
-                var cachingHttpClient = (CachingHttpClient) connection._httpClient;
+                var cachingHttpClient = (CachingHttpClient)connection._httpClient;
                 Assert.Equal(httpClient, cachingHttpClient._httpClient);
                 Assert.Equal(responseCache, cachingHttpClient._responseCache);
             }

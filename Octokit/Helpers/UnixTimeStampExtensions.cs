@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Octokit.Helpers
+﻿namespace Octokit.Helpers
 {
     /// <summary>
     /// Extensions for converting between different time representations

@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using NSubstitute;
 using Octokit.Internal;
-using Octokit.Tests.Helpers;
 using Xunit;
 
 using static Octokit.Internal.TestSetup;

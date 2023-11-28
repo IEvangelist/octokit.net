@@ -362,7 +362,7 @@ namespace Octokit.Reactive
         /// <exception cref="ApiException">Thrown when a general API error occurs.</exception>
         /// <returns></returns>
         IObservable<Unit> RemoveRepositoryFromATeam(string org, string teamSlug, string owner, string repo);
-        
+
         /// <summary>
         /// Get a team by slug name
         /// </summary>

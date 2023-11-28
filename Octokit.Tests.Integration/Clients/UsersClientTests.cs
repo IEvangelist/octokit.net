@@ -2,7 +2,6 @@
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Octokit;
-using Octokit.Tests.Helpers;
 using Octokit.Tests.Integration;
 using Xunit;
 

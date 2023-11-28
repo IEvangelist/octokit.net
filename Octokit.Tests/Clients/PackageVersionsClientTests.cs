@@ -27,7 +27,7 @@ namespace Octokit.Tests.Clients
 
                 await client.GetAllForOrg("fake", PackageType.RubyGems, "name");
 
-                connection.Received().GetAll<PackageVersion>(Arg.Is<Uri>(u => 
+                connection.Received().GetAll<PackageVersion>(Arg.Is<Uri>(u =>
                     u.ToString() == "orgs/fake/packages/rubygems/name/versions"),
                     Arg.Is<Dictionary<string, string>>(d => d.ContainsKey("state")),
                     Args.ApiOptions);

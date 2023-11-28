@@ -1,8 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Threading;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub's Releases API.

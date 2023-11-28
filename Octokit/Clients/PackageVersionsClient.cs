@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     public class PackageVersionsClient : ApiClient, IPackageVersionsClient
     {
@@ -97,7 +94,7 @@ namespace Octokit
             Ensure.GreaterThanZero(packageVersionId, nameof(packageVersionId));
 
             var route = ApiUrls.PackageVersionRestoreOrg(org, packageType, packageName, packageVersionId);
-            
+
             return ApiConnection.Post(route);
         }
         #endregion
@@ -141,7 +138,7 @@ namespace Octokit
             Ensure.ArgumentNotNullOrEmptyString(packageName, nameof(packageName));
             Ensure.GreaterThanZero(packageVersionId, nameof(packageVersionId));
 
-            var route = ApiUrls.PackageVersionActiveUser( packageType, packageName, packageVersionId);
+            var route = ApiUrls.PackageVersionActiveUser(packageType, packageName, packageVersionId);
 
             return ApiConnection.Get<PackageVersion>(route);
         }

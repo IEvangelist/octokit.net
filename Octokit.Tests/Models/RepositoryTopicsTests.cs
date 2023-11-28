@@ -34,7 +34,7 @@ namespace Octokit.Tests.Models
             [Fact]
             public void SetsListWhenListProvided()
             {
-                var theItems = new List<string> {"one", "two", "three"};
+                var theItems = new List<string> { "one", "two", "three" };
                 var result = new RepositoryTopics(theItems);
 
                 Assert.Contains("one", result.Names);

@@ -363,7 +363,7 @@ namespace Octokit.Reactive
         /// <param name="options">Options to change API behaviour</param>
         /// <returns></returns>
         IObservable<OrganizationMembershipInvitation> GetAllFailedInvitations(string org, ApiOptions options);
-        
+
         /// <summary>
         /// Returns all <see cref="OrganizationMembership" />s for the current user.
         /// </summary>

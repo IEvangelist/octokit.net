@@ -43,7 +43,7 @@ namespace Octokit.Reactive
         {
             return _client.DownloadArtifact(owner, repository, artifactId, archiveFormat).ToObservable();
         }
-        
+
         /// <inheritdoc/>
         public IObservable<ListArtifactsResponse> ListWorkflowArtifacts(string owner, string repository, long runId, ListArtifactsRequest listArtifactsRequest = null)
         {

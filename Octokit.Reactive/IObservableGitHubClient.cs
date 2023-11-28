@@ -34,7 +34,7 @@ namespace Octokit.Reactive
         IObservableMigrationClient Migration { get; }
         IObservableReactionsClient Reaction { get; }
         IObservableChecksClient Check { get; }
-        IObservablePackagesClient Packages{ get; }
+        IObservablePackagesClient Packages { get; }
         IObservableEmojisClient Emojis { get; }
         IObservableMarkdownClient Markdown { get; }
         IObservableGitIgnoreClient GitIgnore { get; }

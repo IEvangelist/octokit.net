@@ -1,8 +1,4 @@
-﻿using System;
-using System.Reactive;
-using System.Reactive.Threading.Tasks;
-
-namespace Octokit.Reactive
+﻿namespace Octokit.Reactive
 {
     public class ObservableReactionsClient : IObservableReactionsClient
     {

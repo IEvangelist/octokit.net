@@ -1,7 +1,4 @@
 ﻿using Octokit.Models.Request.Enterprise;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Octokit
 {

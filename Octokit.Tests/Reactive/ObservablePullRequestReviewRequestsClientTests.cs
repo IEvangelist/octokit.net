@@ -4,7 +4,6 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using NSubstitute;
 using Octokit.Reactive;
-using Octokit.Reactive.Internal;
 using Xunit;
 
 namespace Octokit.Tests.Reactive

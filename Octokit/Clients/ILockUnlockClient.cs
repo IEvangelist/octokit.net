@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// Client to manage locking/unlocking a conversation for an Issue or a Pull request

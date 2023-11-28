@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Octokit
+﻿namespace Octokit
 {
     public static class ParameterBuilder
     {
@@ -51,7 +48,7 @@ namespace Octokit
             {
                 data.Add(key, value.ToString());
             }
-            
+
             return data;
         }
 

@@ -75,7 +75,7 @@ namespace Octokit
         /// Deprecated. The permission that new repositories will be added to the team with when none is specified
         /// </summary>
         public string Permission { get; private set; }
-        
+
         /// <summary>
         /// 
         /// </summary>

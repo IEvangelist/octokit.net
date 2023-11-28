@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Octokit
+﻿namespace Octokit
 {
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class ExcludeFromCtorWithAllPropertiesConventionTestAttribute : Attribute

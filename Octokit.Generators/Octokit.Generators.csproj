@@ -19,5 +19,6 @@
     <Copyright>Copyright GitHub 2022</Copyright>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 </Project>

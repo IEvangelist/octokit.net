@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
+﻿using System.Globalization;
 using System.Net;
-using System.Net.Http;
 using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
 using Octokit.Caching;
 using Octokit.Internal;
 
@@ -417,7 +410,7 @@ namespace Octokit
             TimeSpan timeout,
             CancellationToken cancellationToken,
             string twoFactorAuthenticationCode = null,
-            Uri baseAddress = null, 
+            Uri baseAddress = null,
             Func<object, object> preprocessResponseBody = null)
         {
             Ensure.ArgumentNotNull(uri, nameof(uri));
@@ -722,12 +715,12 @@ namespace Octokit
 
             return new ApiResponse<byte[]>(response, response.Body as byte[]);
         }
-        
+
         async Task<IApiResponse<Stream>> GetRawStream(IRequest request)
         {
             request.Headers.Add("Accept", AcceptHeaders.RawContentMediaType);
             var response = await RunRequest(request, CancellationToken.None).ConfigureAwait(false);
-            
+
             return new ApiResponse<Stream>(response, response.Body as Stream);
         }
 
@@ -735,9 +728,9 @@ namespace Octokit
         {
             if (stream is MemoryStream memoryStream)
             {
-                return memoryStream.ToArray();                
+                return memoryStream.ToArray();
             }
-            
+
             using (var ms = new MemoryStream())
             {
                 await stream.CopyToAsync(ms);

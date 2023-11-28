@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Reactive;
-using System.Reactive.Threading.Tasks;
 
 namespace Octokit.Reactive
 {

@@ -1,5 +1,4 @@
-﻿using System;
-using Octokit.Internal;
+﻿using Octokit.Internal;
 using Xunit;
 
 namespace Octokit.Tests.Models

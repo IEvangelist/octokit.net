@@ -1,5 +1,4 @@
 ﻿using Octokit.Internal;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 

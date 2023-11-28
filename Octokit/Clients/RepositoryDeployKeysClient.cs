@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub's Repository Deploy Keys API.

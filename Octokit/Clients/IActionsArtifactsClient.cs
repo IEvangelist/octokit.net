@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-
-namespace Octokit
+﻿namespace Octokit
 {
     /// <summary>
     /// A client for GitHub's Actions Artifacts API.
@@ -19,7 +16,7 @@ namespace Octokit
         /// <param name="listArtifactsRequest"></param>
         /// <returns></returns>
         Task<ListArtifactsResponse> ListArtifacts(string owner, string repository, ListArtifactsRequest listArtifactsRequest = null);
-        
+
         /// <summary>
         /// Gets the specified artifact
         /// </summary>
@@ -28,7 +25,7 @@ namespace Octokit
         /// <param name="artifactId"></param>
         /// <returns></returns>
         Task<Artifact> GetArtifact(string owner, string repository, long artifactId);
-        
+
         /// <summary>
         /// Deletes the specified artifact
         /// </summary>
@@ -37,7 +34,7 @@ namespace Octokit
         /// <param name="artifactId"></param>
         /// <returns></returns>
         Task DeleteArtifact(string owner, string repository, long artifactId);
-        
+
         /// <summary>
         /// Downloads the specified artifact's contents
         /// </summary>
@@ -47,7 +44,7 @@ namespace Octokit
         /// <param name="archiveFormat"></param>
         /// <returns></returns>
         Task<Stream> DownloadArtifact(string owner, string repository, long artifactId, string archiveFormat);
-        
+
         /// <summary>
         /// Lists the artifacts for a specific workflow run
         /// </summary>

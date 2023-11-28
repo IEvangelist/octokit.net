@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Octokit
 {
@@ -22,7 +21,12 @@ namespace Octokit
               || givenType.BaseType.IsAssignableToGenericType(genericType);
         }
 
-        private static bool HasInterfaceThatMapsToGenericTypeDefinition(this Type givenType, Type genericType)
+        private static bool HasInterfaceThatMapsToGenericTypeDefinition(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.Interfaces)] 
+#endif
+            this Type givenType,
+            Type genericType)
         {
             return givenType
               .GetInterfaces()

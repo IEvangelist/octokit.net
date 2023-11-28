@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reactive.Linq;
-using System.Text;
+﻿using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Octokit.Reactive;
 using Xunit;
-using System.Linq;
-using Octokit.Tests.Integration.Helpers;
 
 #if SODIUM_CORE_AVAILABLE
 using Sodium;

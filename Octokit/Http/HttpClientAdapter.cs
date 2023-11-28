@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Octokit.Internal
 {
@@ -200,7 +193,7 @@ namespace Octokit.Internal
             var receivedTime = DateTimeOffset.Now;
             // Since Properties are stored as objects, serialize to HTTP round-tripping string (Format: r)
             // Resolution is limited to one-second, matching the resolution of the HTTP Date header
-            request.Properties[ApiInfoParser.ReceivedTimeHeaderName] = 
+            request.Properties[ApiInfoParser.ReceivedTimeHeaderName] =
                 receivedTime.ToString("r", CultureInfo.InvariantCulture);
 
             // Can't redirect without somewhere to redirect to.

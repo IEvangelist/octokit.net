@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.Collections.ObjectModel;
 using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using Octokit.Internal;
 
 namespace Octokit
@@ -139,7 +134,7 @@ namespace Octokit
             var response = await Connection.GetRaw(uri, parameters).ConfigureAwait(false);
             return response.Body;
         }
-        
+
         /// <inheritdoc/>
         public async Task<Stream> GetRawStream(Uri uri, IDictionary<string, string> parameters)
         {
