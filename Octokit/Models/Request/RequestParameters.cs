@@ -11,8 +11,7 @@ namespace Octokit
     /// </summary>
     public abstract class RequestParameters
     {
-        static readonly ConcurrentDictionary<Type, List<PropertyParameter>> _propertiesMap =
-            new ConcurrentDictionary<Type, List<PropertyParameter>>();
+        static readonly ConcurrentDictionary<Type, List<PropertyParameter>> _propertiesMap = new();
 
         /// <summary>
         /// Converts the derived object into a dictionary that can be used to supply query string parameters.
@@ -32,13 +31,23 @@ namespace Octokit
         {
             return type.GetAllProperties()
                 .Where(p => p.Name != "DebuggerDisplay")
-                .Select(p => new PropertyParameter(p))
+                .Select(p => new PropertyParameter(p, p.PropertyType))
                 .ToList();
         }
 
         [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase",
             Justification = "GitHub API depends on lower case strings")]
-        static Func<PropertyInfo, object, string> GetValueFunc(Type propertyType)
+        static Func<PropertyInfo, object, string> GetValueFunc(
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(
+                DynamicallyAccessedMemberTypes.PublicConstructors
+                | DynamicallyAccessedMemberTypes.PublicMethods
+                | DynamicallyAccessedMemberTypes.PublicNestedTypes
+                | DynamicallyAccessedMemberTypes.PublicProperties
+                | DynamicallyAccessedMemberTypes.PublicEvents
+                | DynamicallyAccessedMemberTypes.PublicFields)]
+#endif
+            Type propertyType)
         {
             // get underlying type if nullable
             propertyType = Nullable.GetUnderlyingType(propertyType) ?? propertyType;
@@ -48,7 +57,7 @@ namespace Octokit
                 return (prop, value) =>
                 {
                     var list = ((IEnumerable<string>)value).ToArray();
-                    return !list.Any() ? null : string.Join(",", list);
+                    return list.Length is 0 ? null : string.Join(",", list);
                 };
             }
 
@@ -115,11 +124,23 @@ namespace Octokit
         {
             readonly Func<PropertyInfo, object, string> _valueFunc;
             readonly PropertyInfo _property;
-            public PropertyParameter(PropertyInfo property)
+
+            public PropertyParameter(
+                PropertyInfo property,
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(
+                DynamicallyAccessedMemberTypes.PublicConstructors
+                | DynamicallyAccessedMemberTypes.PublicMethods
+                | DynamicallyAccessedMemberTypes.PublicFields
+                | DynamicallyAccessedMemberTypes.PublicNestedTypes
+                | DynamicallyAccessedMemberTypes.PublicProperties
+                | DynamicallyAccessedMemberTypes.PublicEvents)]
+#endif
+                Type type)
             {
                 _property = property;
                 Key = GetParameterKeyFromProperty(property);
-                _valueFunc = GetValueFunc(property.PropertyType);
+                _valueFunc = GetValueFunc(type);
             }
 
             public string Key { get; private set; }
