@@ -7,7 +7,7 @@ namespace Octokit.Internal
 {
     public class SimpleJsonSerializer : IJsonSerializer
     {
-        static readonly GitHubSerializerStrategy _serializationStrategy = new GitHubSerializerStrategy();
+        static readonly GitHubSerializerStrategy _serializationStrategy = new();
 
         public string Serialize(object item)
         {
@@ -39,8 +39,8 @@ namespace Octokit.Internal
 
         class GitHubSerializerStrategy : PocoJsonSerializerStrategy
         {
-            readonly List<string> _membersWhichShouldPublishNull = new List<string>();
-            readonly ConcurrentDictionary<Type, ConcurrentDictionary<object, object>> _cachedEnums = new ConcurrentDictionary<Type, ConcurrentDictionary<object, object>>();
+            readonly List<string> _membersWhichShouldPublishNull = [];
+            readonly ConcurrentDictionary<Type, ConcurrentDictionary<object, object>> _cachedEnums = new();
 
             protected override string MapClrMemberToJsonFieldName(MemberInfo member)
             {
@@ -181,7 +181,7 @@ namespace Octokit.Internal
                         return DeserializeEnumHelper(stringValue, type);
                     }
 
-                    if (ReflectionUtils.IsTypeGenericeCollectionInterface(type))
+                    if (ReflectionUtils.IsTypeGenericCollectionInterface(type))
                     {
                         // OAuth tokens might be a string of comma-separated values
                         // we should only try this if the return array is a collection of strings
@@ -235,6 +235,12 @@ namespace Octokit.Internal
                         p => new KeyValuePair<Type, ReflectionUtils.SetDelegate>(p.Type, p.SetDelegate));
             }
 
+#if NET6_0_OR_GREATER
+            [return: DynamicallyAccessedMembers(
+                DynamicallyAccessedMemberTypes.PublicConstructors
+                | DynamicallyAccessedMemberTypes.PublicFields
+                | DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
             private static Type GetPayloadType(string activityType)
             {
                 return activityType switch

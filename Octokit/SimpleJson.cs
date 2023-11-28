@@ -1320,7 +1320,7 @@ namespace Octokit
 
         internal virtual ReflectionUtils.ConstructorDelegate ContructorDelegateFactory(Type key)
         {
-            return ReflectionUtils.GetContructor(key, key.IsArray ? ArrayConstructorParameterTypes : EmptyTypes);
+            return ReflectionUtils.GetConstructor(key, key.IsArray ? ArrayConstructorParameterTypes : EmptyTypes);
         }
 
         internal virtual IDictionary<string, ReflectionUtils.GetDelegate> GetterValueFactory(Type type)
@@ -1373,7 +1373,15 @@ namespace Octokit
         }
 
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-        public virtual object DeserializeObject(object value, Type type)
+        public virtual object DeserializeObject(
+            object value,
+#if NET6_0_OR_GREATER
+            [DynamicallyAccessedMembers(
+                DynamicallyAccessedMemberTypes.PublicConstructors
+                | DynamicallyAccessedMemberTypes.PublicFields
+                | DynamicallyAccessedMemberTypes.NonPublicFields)]
+#endif
+            Type type)
         {
             if (type == null) throw new ArgumentNullException("type");
             string str = value as string;
@@ -1481,7 +1489,7 @@ namespace Octokit
                         {
                             var ctorType = typeof(IDictionary<,>).MakeGenericType(keyType, valueType);
                             var genericReadonlyType = typeof(ReadOnlyDictionary<,>).MakeGenericType(keyType, valueType);
-                            var ctor = ReflectionUtils.GetContructor(genericReadonlyType, new Type[] { ctorType });
+                            var ctor = ReflectionUtils.GetConstructor(genericReadonlyType, new Type[] { ctorType });
                             Debug.Assert(ctor != null);
                             obj = ctor.Invoke(new[] { obj });
                         }
@@ -1521,7 +1529,7 @@ namespace Octokit
                             foreach (object o in jsonObject)
                                 list[i++] = DeserializeObject(o, type.GetElementType());
                         }
-                        else if (ReflectionUtils.IsTypeGenericeCollectionInterface(type) || ReflectionUtils.IsAssignableFrom(typeof(IList), type))
+                        else if (ReflectionUtils.IsTypeGenericCollectionInterface(type) || ReflectionUtils.IsAssignableFrom(typeof(IList), type))
                         {
                             Type innerType = ReflectionUtils.GetGenericListElementType(type);
                             list = (IList)(ConstructorCache[type] ?? ConstructorCache[typeof(List<>).MakeGenericType(innerType)])(jsonObject.Count);
@@ -1568,6 +1576,7 @@ namespace Octokit
             }
             return returnValue;
         }
+
         [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate", Justification = "Need to support .NET 2")]
         protected virtual bool TrySerializeUnknownTypes(object input, out object output)
         {
@@ -1758,7 +1767,7 @@ namespace Octokit
                 return GetTypeInfo(type).IsGenericType;
             }
 
-            public static bool IsTypeGenericeCollectionInterface(Type type)
+            public static bool IsTypeGenericCollectionInterface(Type type)
             {
                 if (!IsTypeGeneric(type))
                     return false;
@@ -1932,7 +1941,7 @@ namespace Octokit
 #endif
             }
 
-            public static ConstructorDelegate GetContructor(ConstructorInfo constructorInfo)
+            public static ConstructorDelegate GetConstructor(ConstructorInfo constructorInfo)
             {
 #if SIMPLE_JSON_NO_LINQ_EXPRESSION
                 return GetConstructorByReflection(constructorInfo);
@@ -1941,7 +1950,7 @@ namespace Octokit
 #endif
             }
 
-            public static ConstructorDelegate GetContructor(Type type, params Type[] argsType)
+            public static ConstructorDelegate GetConstructor(Type type, params Type[] argsType)
             {
 #if SIMPLE_JSON_NO_LINQ_EXPRESSION
                 return GetConstructorByReflection(type, argsType);
