@@ -37,7 +37,7 @@ namespace Octokit.Tests.Integration.Clients
 
                 var members = await _gitHub.Organization.Member.GetAll(_organizationFixture, options);
 
-                Assert.Equal(1, members.Count);
+                Assert.Single(members);
             }
 
             [OrganizationTest]
@@ -52,7 +52,7 @@ namespace Octokit.Tests.Integration.Clients
 
                 var members = await _gitHub.Organization.Member.GetAll(_organizationFixture, options);
 
-                Assert.Equal(1, members.Count);
+                Assert.Single(members);
             }
 
             [OrganizationTest]
@@ -76,8 +76,8 @@ namespace Octokit.Tests.Integration.Clients
 
                 var secondPage = await _gitHub.Organization.Member.GetAll(_organizationFixture, skipStartOptions);
 
-                Assert.Equal(1, firstPage.Count);
-                Assert.Equal(1, secondPage.Count);
+                Assert.Single(firstPage);
+                Assert.Single(secondPage);
                 Assert.NotEqual(firstPage.First().Id, secondPage.First().Id);
             }
 
@@ -237,7 +237,7 @@ namespace Octokit.Tests.Integration.Clients
 
                     var pendingInvitations = await _gitHub.Organization.Member.GetAllPendingInvitations(Helper.Organization, options);
                     Assert.NotEmpty(pendingInvitations);
-                    Assert.Equal(1, pendingInvitations.Count);
+                    Assert.Single(pendingInvitations);
                 }
             }
 
@@ -258,7 +258,7 @@ namespace Octokit.Tests.Integration.Clients
 
                     var firstPagePendingInvitations = await _gitHub.Organization.Member.GetAllPendingInvitations(Helper.Organization, firstPageOptions);
                     Assert.NotEmpty(firstPagePendingInvitations);
-                    Assert.Equal(1, firstPagePendingInvitations.Count);
+                    Assert.Single(firstPagePendingInvitations);
 
                     var secondPageOptions = new ApiOptions
                     {
@@ -269,7 +269,7 @@ namespace Octokit.Tests.Integration.Clients
 
                     var secondPagePendingInvitations = await _gitHub.Organization.Member.GetAllPendingInvitations(Helper.Organization, secondPageOptions);
                     Assert.NotEmpty(secondPagePendingInvitations);
-                    Assert.Equal(1, secondPagePendingInvitations.Count);
+                    Assert.Single(secondPagePendingInvitations);
 
                     Assert.NotEqual(firstPagePendingInvitations[0].Login, secondPagePendingInvitations[0].Login);
                 }
@@ -321,7 +321,7 @@ namespace Octokit.Tests.Integration.Clients
 
                 var memberships = await _gitHub.Organization.Member.GetAllOrganizationMembershipsForCurrent(options);
 
-                Assert.Equal(1, memberships.Count);
+                Assert.Single(memberships);
             }
 
         }
