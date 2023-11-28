@@ -192,7 +192,7 @@ namespace Octokit.Tests.Integration.Clients
             {
                 // Find a repo under the installation
                 var repos = await _githubAppInstallation.GitHubApps.Installation.GetAllRepositoriesForCurrent();
-                var repo = repos.Repositories.First();
+                var repo = repos.Repositories[0];
 
                 // Now, using the GitHub App auth, find this repository installation
                 var result = await _github.GitHubApps.GetRepositoryInstallationForCurrent(repo.Owner.Login, repo.Name);
@@ -205,7 +205,7 @@ namespace Octokit.Tests.Integration.Clients
             {
                 // Find a repo under the installation
                 var repos = await _githubAppInstallation.GitHubApps.Installation.GetAllRepositoriesForCurrent();
-                var repo = repos.Repositories.First();
+                var repo = repos.Repositories[0];
 
                 // Now, using the GitHub App auth, find this repository installation
                 var result = await _github.GitHubApps.GetRepositoryInstallationForCurrent(repo.Id);

@@ -69,9 +69,9 @@ namespace Octokit.Tests.Models
 
       Assert.NotNull(installations);
       Assert.NotEmpty(installations);
-      Assert.Equal(1, installations.Count);
-      Assert.Null(installations.First().SuspendedAt);
-      Assert.Null(installations.First().SuspendedBy);
+      Assert.Single(installations);
+      Assert.Null(installations[0].SuspendedAt);
+      Assert.Null(installations[0].SuspendedBy);
 
     }
 
@@ -156,9 +156,9 @@ namespace Octokit.Tests.Models
 
       Assert.NotNull(installations);
       Assert.NotEmpty(installations);
-      Assert.Equal(1, installations.Count);
-      Assert.NotNull(installations.First().SuspendedAt);
-      Assert.NotNull(installations.First().SuspendedBy);
+      Assert.Single(installations);
+      Assert.NotNull(installations[0].SuspendedAt);
+      Assert.NotNull(installations[0].SuspendedBy);
 
     }
   }

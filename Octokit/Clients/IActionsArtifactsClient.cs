@@ -16,6 +16,7 @@ namespace Octokit
         /// </summary>
         /// <param name="owner"></param>
         /// <param name="repository"></param>
+        /// <param name="listArtifactsRequest"></param>
         /// <returns></returns>
         Task<ListArtifactsResponse> ListArtifacts(string owner, string repository, ListArtifactsRequest listArtifactsRequest = null);
         
@@ -53,6 +54,7 @@ namespace Octokit
         /// <param name="owner"></param>
         /// <param name="repository"></param>
         /// <param name="runId"></param>
+        /// <param name="listArtifactsRequest"></param>
         /// <returns></returns>
         Task<ListArtifactsResponse> ListWorkflowArtifacts(string owner, string repository, long runId, ListArtifactsRequest listArtifactsRequest = null);
     }

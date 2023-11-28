@@ -48,6 +48,7 @@ namespace Octokit.Reactive
         /// <param name="owner"></param>
         /// <param name="repository"></param>
         /// <param name="runId"></param>
+        /// <param name="listArtifactsRequest"></param>
         /// <returns></returns>
         IObservable<ListArtifactsResponse> ListWorkflowArtifacts(string owner, string repository, long runId, ListArtifactsRequest listArtifactsRequest = null);
     }

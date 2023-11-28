@@ -130,7 +130,7 @@ public class IssueTest
 
         Assert.Equal(1347, issue.Number);
         Assert.Equal("octocat", issue.User.Login);
-        Assert.Equal("bug", issue.Labels.First().Name);
+        Assert.Equal("bug", issue.Labels[0].Name);
         Assert.Null(issue.ActiveLockReason);
     }
 

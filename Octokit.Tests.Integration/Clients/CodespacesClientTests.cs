@@ -34,7 +34,7 @@ public class CodespacesClientTests
     public async Task CanGetCodespaceByName()
     {
         var collection = await _fixture.GetForRepository(Helper.UserName, Helper.RepositoryWithCodespaces);
-        var codespaceName = collection.Codespaces.First().Name;
+        var codespaceName = collection.Codespaces[0].Name;
         var retrieved = await _fixture.Get(codespaceName);
         Assert.NotNull(retrieved);
     }
@@ -43,7 +43,7 @@ public class CodespacesClientTests
     public async Task CanStartCodespace()
     {
         var collection = await _fixture.GetForRepository(Helper.UserName, Helper.RepositoryWithCodespaces);
-        var codespaceName = collection.Codespaces.First().Name;
+        var codespaceName = collection.Codespaces[0].Name;
         var retrieved = await _fixture.Start(codespaceName);
         Assert.NotNull(retrieved);
     }
@@ -52,7 +52,7 @@ public class CodespacesClientTests
     public async Task CanStopCodespace()
     {
         var collection = await _fixture.GetForRepository(Helper.UserName, Helper.RepositoryWithCodespaces);
-        var codespaceName = collection.Codespaces.First().Name;
+        var codespaceName = collection.Codespaces[0].Name;
         var retrieved = await _fixture.Stop(codespaceName);
         Assert.NotNull(retrieved);
     }

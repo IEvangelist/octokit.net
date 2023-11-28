@@ -44,7 +44,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         issueLabelsInfo = await _issuesLabelsClient.GetAllForIssue(_context.RepositoryOwner, _context.RepositoryName, issue.Number);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
         Assert.Equal(newLabel.Color, issueLabelsInfo[0].Color);
         Assert.Equal(newLabel.Description, issueLabelsInfo[0].Description);
     }
@@ -68,7 +68,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         issueLabelsInfo = await _issuesLabelsClient.GetAllForIssue(_context.Repository.Id, issue.Number);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
         Assert.Equal(newLabel.Color, issueLabelsInfo[0].Color);
         Assert.Equal(newLabel.Description, issueLabelsInfo[0].Description);
     }
@@ -98,7 +98,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         issueLabelsInfo = await _issuesLabelsClient.GetAllForIssue(_context.RepositoryOwner, _context.RepositoryName, issue.Number, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
         Assert.Equal(newLabel.Color, issueLabelsInfo[0].Color);
     }
 
@@ -127,7 +127,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         issueLabelsInfo = await _issuesLabelsClient.GetAllForIssue(_context.Repository.Id, issue.Number, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
         Assert.Equal(newLabel.Color, issueLabelsInfo[0].Color);
     }
 
@@ -161,8 +161,8 @@ public class IssuesLabelsClientTests : IDisposable
 
         issueLabelsInfo = await _issuesLabelsClient.GetAllForIssue(_context.RepositoryOwner, _context.RepositoryName, issue.Number, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
-        Assert.Equal(labels.Last().Color, issueLabelsInfo.First().Color);
+        Assert.Single(issueLabelsInfo);
+        Assert.Equal(labels.Last().Color, issueLabelsInfo[0].Color);
     }
 
     [IntegrationTest]
@@ -195,8 +195,8 @@ public class IssuesLabelsClientTests : IDisposable
 
         issueLabelsInfo = await _issuesLabelsClient.GetAllForIssue(_context.Repository.Id, issue.Number, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
-        Assert.Equal(labels.Last().Color, issueLabelsInfo.First().Color);
+        Assert.Single(issueLabelsInfo);
+        Assert.Equal(labels.Last().Color, issueLabelsInfo[0].Color);
     }
 
     [IntegrationTest]
@@ -235,9 +235,9 @@ public class IssuesLabelsClientTests : IDisposable
 
         var secondPage = await _issuesLabelsClient.GetAllForIssue(_context.RepositoryOwner, _context.RepositoryName, issue.Number, skipStartOptions);
 
-        Assert.Equal(1, firstPage.Count);
-        Assert.Equal(1, secondPage.Count);
-        Assert.NotEqual(firstPage.First().Color, secondPage.First().Color);
+        Assert.Single(firstPage);
+        Assert.Single(secondPage);
+        Assert.NotEqual(firstPage[0].Color, secondPage[0].Color);
     }
 
     [IntegrationTest]
@@ -276,9 +276,9 @@ public class IssuesLabelsClientTests : IDisposable
 
         var secondPage = await _issuesLabelsClient.GetAllForIssue(_context.Repository.Id, issue.Number, skipStartOptions);
 
-        Assert.Equal(1, firstPage.Count);
-        Assert.Equal(1, secondPage.Count);
-        Assert.NotEqual(firstPage.First().Color, secondPage.First().Color);
+        Assert.Single(firstPage);
+        Assert.Single(secondPage);
+        Assert.NotEqual(firstPage[0].Color, secondPage[0].Color);
     }
 
     [IntegrationTest]
@@ -339,7 +339,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         var issueLabelsInfo = await _issuesLabelsClient.GetAllForRepository(_context.RepositoryOwner, _context.RepositoryName, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
     }
 
     [IntegrationTest]
@@ -368,7 +368,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         var issueLabelsInfo = await _issuesLabelsClient.GetAllForRepository(_context.Repository.Id, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
     }
 
     [IntegrationTest]
@@ -398,7 +398,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         var issueLabelsInfo = await _issuesLabelsClient.GetAllForRepository(_context.RepositoryOwner, _context.RepositoryName, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
     }
 
     [IntegrationTest]
@@ -428,7 +428,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         var issueLabelsInfo = await _issuesLabelsClient.GetAllForRepository(_context.Repository.Id, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
     }
 
     [IntegrationTest]
@@ -467,9 +467,9 @@ public class IssuesLabelsClientTests : IDisposable
 
         var secondPage = await _issuesLabelsClient.GetAllForRepository(_context.RepositoryOwner, _context.RepositoryName, skipStartOptions);
 
-        Assert.Equal(1, firstPage.Count);
-        Assert.Equal(1, secondPage.Count);
-        Assert.NotEqual(firstPage.First().Color, secondPage.First().Color);
+        Assert.Single(firstPage);
+        Assert.Single(secondPage);
+        Assert.NotEqual(firstPage[0].Color, secondPage[0].Color);
     }
 
     [IntegrationTest]
@@ -508,9 +508,9 @@ public class IssuesLabelsClientTests : IDisposable
 
         var secondPage = await _issuesLabelsClient.GetAllForRepository(_context.Repository.Id, skipStartOptions);
 
-        Assert.Equal(1, firstPage.Count);
-        Assert.Equal(1, secondPage.Count);
-        Assert.NotEqual(firstPage.First().Color, secondPage.First().Color);
+        Assert.Single(firstPage);
+        Assert.Single(secondPage);
+        Assert.NotEqual(firstPage[0].Color, secondPage[0].Color);
     }
 
     [IntegrationTest]
@@ -535,7 +535,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         issueLabelsInfo = await _issuesLabelsClient.GetAllForMilestone(_context.RepositoryOwner, _context.RepositoryName, milestone.Number);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
         Assert.Equal(label.Color, issueLabelsInfo[0].Color);
     }
 
@@ -561,7 +561,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         issueLabelsInfo = await _issuesLabelsClient.GetAllForMilestone(_context.Repository.Id, milestone.Number);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
         Assert.Equal(label.Color, issueLabelsInfo[0].Color);
     }
 
@@ -594,7 +594,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         var issueLabelsInfo = await _issuesLabelsClient.GetAllForMilestone(_context.RepositoryOwner, _context.RepositoryName, milestone.Number, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
     }
 
     [IntegrationTest]
@@ -626,7 +626,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         var issueLabelsInfo = await _issuesLabelsClient.GetAllForMilestone(_context.Repository.Id, milestone.Number, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
     }
 
     [IntegrationTest]
@@ -659,7 +659,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         var issueLabelsInfo = await _issuesLabelsClient.GetAllForMilestone(_context.RepositoryOwner, _context.RepositoryName, milestone.Number, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
     }
 
     [IntegrationTest]
@@ -692,7 +692,7 @@ public class IssuesLabelsClientTests : IDisposable
 
         var issueLabelsInfo = await _issuesLabelsClient.GetAllForMilestone(_context.Repository.Id, milestone.Number, options);
 
-        Assert.Equal(1, issueLabelsInfo.Count);
+        Assert.Single(issueLabelsInfo);
     }
 
     [IntegrationTest]
@@ -734,9 +734,9 @@ public class IssuesLabelsClientTests : IDisposable
 
         var secondPage = await _issuesLabelsClient.GetAllForMilestone(_context.RepositoryOwner, _context.RepositoryName, milestone.Number, skipStartOptions);
 
-        Assert.Equal(1, firstPage.Count);
-        Assert.Equal(1, secondPage.Count);
-        Assert.NotEqual(firstPage.First().Color, secondPage.First().Color);
+        Assert.Single(firstPage);
+        Assert.Single(secondPage);
+        Assert.NotEqual(firstPage[0].Color, secondPage[0].Color);
     }
 
     [IntegrationTest]
@@ -778,9 +778,9 @@ public class IssuesLabelsClientTests : IDisposable
 
         var secondPage = await _issuesLabelsClient.GetAllForMilestone(_context.Repository.Id, milestone.Number, skipStartOptions);
 
-        Assert.Equal(1, firstPage.Count);
-        Assert.Equal(1, secondPage.Count);
-        Assert.NotEqual(firstPage.First().Color, secondPage.First().Color);
+        Assert.Single(firstPage);
+        Assert.Single(secondPage);
+        Assert.NotEqual(firstPage[0].Color, secondPage[0].Color);
     }
 
     [IntegrationTest]

@@ -19,5 +19,8 @@
     <Copyright>Copyright GitHub 2022</Copyright>
     <LangVersion>9</LangVersion>
     <Nullable>enable</Nullable>
+    <IsTrimmable>true</IsTrimmable>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
   </PropertyGroup>
 </Project>

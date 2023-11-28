@@ -22,7 +22,7 @@ namespace Octokit.Tests.Exceptions
                 var exception = new ApiValidationException(response);
 
                 Assert.Equal("Validation Failed", exception.ApiError.Message);
-                Assert.Equal("key is already in use", exception.ApiError.Errors.First().Message);
+                Assert.Equal("key is already in use", exception.ApiError.Errors[0].Message);
             }
 
             [Fact]
@@ -47,7 +47,7 @@ namespace Octokit.Tests.Exceptions
                 var deserialized = BinaryFormatterExtensions.SerializeAndDeserializeObject(exception);
 
                 Assert.Equal("Validation Failed", deserialized.ApiError.Message);
-                Assert.Equal("key is already in use", exception.ApiError.Errors.First().Message);
+                Assert.Equal("key is already in use", exception.ApiError.Errors[0].Message);
             }
         }
     }

@@ -71,9 +71,9 @@ namespace Octokit.Tests.Integration.Clients
                     .Content
                     .GetAllContents("octokit", "octokit.net", "Octokit.Reactive/ObservableGitHubClient.cs");
 
-                Assert.Equal(1, contents.Count);
-                Assert.Equal(ContentType.File, contents.First().Type);
-                Assert.Equal("https://github.com/octokit/octokit.net/blob/main/Octokit.Reactive/ObservableGitHubClient.cs", contents.First().HtmlUrl);
+                Assert.Single(contents);
+                Assert.Equal(ContentType.File, contents[0].Type);
+                Assert.Equal("https://github.com/octokit/octokit.net/blob/main/Octokit.Reactive/ObservableGitHubClient.cs", contents[0].HtmlUrl);
             }
 
             [IntegrationTest]
@@ -86,9 +86,9 @@ namespace Octokit.Tests.Integration.Clients
                     .Content
                     .GetAllContents(7528679, "Octokit.Reactive/ObservableGitHubClient.cs");
 
-                Assert.Equal(1, contents.Count);
-                Assert.Equal(ContentType.File, contents.First().Type);
-                Assert.Equal("https://github.com/octokit/octokit.net/blob/main/Octokit.Reactive/ObservableGitHubClient.cs", contents.First().HtmlUrl);
+                Assert.Single(contents);
+                Assert.Equal(ContentType.File, contents[0].Type);
+                Assert.Equal("https://github.com/octokit/octokit.net/blob/main/Octokit.Reactive/ObservableGitHubClient.cs", contents[0].HtmlUrl);
             }
 
             [IntegrationTest]
@@ -102,7 +102,7 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContents("octokit", "octokit.net", "Octokit");
 
                 Assert.True(contents.Count > 2);
-                Assert.Equal(ContentType.Dir, contents.First().Type);
+                Assert.Equal(ContentType.Dir, contents[0].Type);
             }
 
             [IntegrationTest]
@@ -116,7 +116,7 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContents(7528679, "Octokit");
 
                 Assert.True(contents.Count > 2);
-                Assert.Equal(ContentType.Dir, contents.First().Type);
+                Assert.Equal(ContentType.Dir, contents[0].Type);
             }
 
             [IntegrationTest]
@@ -130,8 +130,8 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContents("octocat", "Spoon-Knife");
 
                 Assert.Equal(3, contents.Count);
-                Assert.Equal(ContentType.File, contents.First().Type);
-                Assert.Equal("https://github.com/octocat/Spoon-Knife/blob/main/README.md", contents.First().HtmlUrl);
+                Assert.Equal(ContentType.File, contents[0].Type);
+                Assert.Equal("https://github.com/octocat/Spoon-Knife/blob/main/README.md", contents[0].HtmlUrl);
             }
 
             [IntegrationTest]
@@ -145,8 +145,8 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContents(1300192);
 
                 Assert.Equal(3, contents.Count);
-                Assert.Equal(ContentType.File, contents.First().Type);
-                Assert.Equal("https://github.com/octocat/Spoon-Knife/blob/main/README.md", contents.First().HtmlUrl);
+                Assert.Equal(ContentType.File, contents[0].Type);
+                Assert.Equal("https://github.com/octocat/Spoon-Knife/blob/main/README.md", contents[0].HtmlUrl);
             }
 
             [IntegrationTest]
@@ -188,9 +188,9 @@ namespace Octokit.Tests.Integration.Clients
                     .Content
                     .GetAllContentsByRef("octokit", "octokit.net", "Octokit.Reactive/ObservableGitHubClient.cs", "main");
 
-                Assert.Equal(1, contents.Count);
-                Assert.Equal(ContentType.File, contents.First().Type);
-                Assert.Equal("https://github.com/octokit/octokit.net/blob/main/Octokit.Reactive/ObservableGitHubClient.cs", contents.First().HtmlUrl);
+                Assert.Single(contents);
+                Assert.Equal(ContentType.File, contents[0].Type);
+                Assert.Equal("https://github.com/octokit/octokit.net/blob/main/Octokit.Reactive/ObservableGitHubClient.cs", contents[0].HtmlUrl);
             }
 
             [IntegrationTest]
@@ -203,9 +203,9 @@ namespace Octokit.Tests.Integration.Clients
                     .Content
                     .GetAllContentsByRef(7528679, "Octokit.Reactive/ObservableGitHubClient.cs", "main");
 
-                Assert.Equal(1, contents.Count);
-                Assert.Equal(ContentType.File, contents.First().Type);
-                Assert.Equal("https://github.com/octokit/octokit.net/blob/main/Octokit.Reactive/ObservableGitHubClient.cs", contents.First().HtmlUrl);
+                Assert.Single(contents);
+                Assert.Equal(ContentType.File, contents[0].Type);
+                Assert.Equal("https://github.com/octokit/octokit.net/blob/main/Octokit.Reactive/ObservableGitHubClient.cs", contents[0].HtmlUrl);
             }
 
             [IntegrationTest]
@@ -219,7 +219,7 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContentsByRef("octokit", "octokit.net", "Octokit", "main");
 
                 Assert.True(contents.Count > 2);
-                Assert.Equal(ContentType.Dir, contents.First().Type);
+                Assert.Equal(ContentType.Dir, contents[0].Type);
             }
 
             [IntegrationTest]
@@ -233,7 +233,7 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContentsByRef("octokit", "octokit.net", "Octokit/", "main");
 
                 Assert.True(contents.Count > 2);
-                Assert.Equal(ContentType.Dir, contents.First().Type);
+                Assert.Equal(ContentType.Dir, contents[0].Type);
             }
 
             [IntegrationTest]
@@ -259,7 +259,7 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContentsByRef(7528679, "Octokit", "main");
 
                 Assert.True(contents.Count > 2);
-                Assert.Equal(ContentType.Dir, contents.First().Type);
+                Assert.Equal(ContentType.Dir, contents[0].Type);
             }
 
             [IntegrationTest]
@@ -273,8 +273,8 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContentsByRef("octocat", "Spoon-Knife", "main");
 
                 Assert.Equal(3, contents.Count);
-                Assert.Equal(ContentType.File, contents.First().Type);
-                Assert.Equal("https://github.com/octocat/Spoon-Knife/blob/main/README.md", contents.First().HtmlUrl);
+                Assert.Equal(ContentType.File, contents[0].Type);
+                Assert.Equal("https://github.com/octocat/Spoon-Knife/blob/main/README.md", contents[0].HtmlUrl);
             }
 
             [IntegrationTest]
@@ -288,8 +288,8 @@ namespace Octokit.Tests.Integration.Clients
                     .GetAllContentsByRef(1300192, "main");
 
                 Assert.Equal(3, contents.Count);
-                Assert.Equal(ContentType.File, contents.First().Type);
-                Assert.Equal("https://github.com/octocat/Spoon-Knife/blob/main/README.md", contents.First().HtmlUrl);
+                Assert.Equal(ContentType.File, contents[0].Type);
+                Assert.Equal("https://github.com/octocat/Spoon-Knife/blob/main/README.md", contents[0].HtmlUrl);
             }
 
             [IntegrationTest]
@@ -338,8 +338,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", file.Content.Name);
 
                 var contents = await fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt");
-                string fileSha = contents.First().Sha;
-                Assert.Equal("Some Content", contents.First().Content);
+                string fileSha = contents[0].Sha;
+                Assert.Equal("Some Content", contents[0].Content);
 
                 var update = await fixture.UpdateFile(
                     repository.Owner.Login,
@@ -349,8 +349,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", update.Content.Name);
 
                 contents = await fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt");
-                Assert.Equal("New Content", contents.First().Content);
-                fileSha = contents.First().Sha;
+                Assert.Equal("New Content", contents[0].Content);
+                fileSha = contents[0].Sha;
 
                 await fixture.DeleteFile(
                     repository.Owner.Login,
@@ -381,8 +381,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", file.Content.Name);
 
                 var contents = await fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt");
-                string fileSha = contents.First().Sha;
-                Assert.Equal("Some Content", contents.First().Content);
+                string fileSha = contents[0].Sha;
+                Assert.Equal("Some Content", contents[0].Content);
 
                 var update = await fixture.UpdateFile(
                     repository.Id,
@@ -391,8 +391,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", update.Content.Name);
 
                 contents = await fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt");
-                Assert.Equal("New Content", contents.First().Content);
-                fileSha = contents.First().Sha;
+                Assert.Equal("New Content", contents[0].Content);
+                fileSha = contents[0].Sha;
 
                 await fixture.DeleteFile(
                     repository.Id,
@@ -426,8 +426,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", file.Content.Name);
 
                 var contents = await fixture.GetAllContentsByRef(repository.Owner.Login, repository.Name, "somefile.txt", branchName);
-                string fileSha = contents.First().Sha;
-                Assert.Equal("Some Content", contents.First().Content);
+                string fileSha = contents[0].Sha;
+                Assert.Equal("Some Content", contents[0].Content);
 
                 var update = await fixture.UpdateFile(
                     repository.Owner.Login,
@@ -437,8 +437,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", update.Content.Name);
 
                 contents = await fixture.GetAllContentsByRef(repository.Owner.Login, repository.Name, "somefile.txt", branchName);
-                Assert.Equal("New Content", contents.First().Content);
-                fileSha = contents.First().Sha;
+                Assert.Equal("New Content", contents[0].Content);
+                fileSha = contents[0].Sha;
 
                 await fixture.DeleteFile(
                     repository.Owner.Login,
@@ -472,8 +472,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", file.Content.Name);
 
                 var contents = await fixture.GetAllContentsByRef(repository.Owner.Login, repository.Name, "somefile.txt", branchName);
-                string fileSha = contents.First().Sha;
-                Assert.Equal("Some Content", contents.First().Content);
+                string fileSha = contents[0].Sha;
+                Assert.Equal("Some Content", contents[0].Content);
 
                 var update = await fixture.UpdateFile(
                     repository.Id,
@@ -482,8 +482,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", update.Content.Name);
 
                 contents = await fixture.GetAllContentsByRef(repository.Owner.Login, repository.Name, "somefile.txt", branchName);
-                Assert.Equal("New Content", contents.First().Content);
-                fileSha = contents.First().Sha;
+                Assert.Equal("New Content", contents[0].Content);
+                fileSha = contents[0].Sha;
 
                 await fixture.DeleteFile(
                     repository.Id,
@@ -514,8 +514,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", file.Content.Name);
 
                 var contents = await fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt");
-                string fileSha = contents.First().Sha;
-                Assert.Equal("Some Content", contents.First().Content);
+                string fileSha = contents[0].Sha;
+                Assert.Equal("Some Content", contents[0].Content);
 
                 var update = await fixture.UpdateFile(
                     repository.Owner.Login,
@@ -525,8 +525,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", update.Content.Name);
 
                 contents = await fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt");
-                Assert.Equal("New Content", contents.First().Content);
-                fileSha = contents.First().Sha;
+                Assert.Equal("New Content", contents[0].Content);
+                fileSha = contents[0].Sha;
 
                 await fixture.DeleteFile(
                     repository.Owner.Login,
@@ -557,8 +557,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", file.Content.Name);
 
                 var contents = await fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt");
-                string fileSha = contents.First().Sha;
-                Assert.Equal("Some Content", contents.First().Content);
+                string fileSha = contents[0].Sha;
+                Assert.Equal("Some Content", contents[0].Content);
 
                 var update = await fixture.UpdateFile(
                     repository.Id,
@@ -567,8 +567,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", update.Content.Name);
 
                 contents = await fixture.GetAllContents(repository.Owner.Login, repository.Name, "somefile.txt");
-                Assert.Equal("New Content", contents.First().Content);
-                fileSha = contents.First().Sha;
+                Assert.Equal("New Content", contents[0].Content);
+                fileSha = contents[0].Sha;
 
                 await fixture.DeleteFile(
                     repository.Id,
@@ -602,8 +602,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", file.Content.Name);
 
                 var contents = await fixture.GetAllContentsByRef(repository.Owner.Login, repository.Name, "somefile.txt", branchName);
-                string fileSha = contents.First().Sha;
-                Assert.Equal("Some Content", contents.First().Content);
+                string fileSha = contents[0].Sha;
+                Assert.Equal("Some Content", contents[0].Content);
 
                 var update = await fixture.UpdateFile(
                     repository.Owner.Login,
@@ -613,8 +613,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", update.Content.Name);
 
                 contents = await fixture.GetAllContentsByRef(repository.Owner.Login, repository.Name, "somefile.txt", branchName);
-                Assert.Equal("New Content", contents.First().Content);
-                fileSha = contents.First().Sha;
+                Assert.Equal("New Content", contents[0].Content);
+                fileSha = contents[0].Sha;
 
                 await fixture.DeleteFile(
                     repository.Owner.Login,
@@ -648,8 +648,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", file.Content.Name);
 
                 var contents = await fixture.GetAllContentsByRef(repository.Owner.Login, repository.Name, "somefile.txt", branchName);
-                string fileSha = contents.First().Sha;
-                Assert.Equal("Some Content", contents.First().Content);
+                string fileSha = contents[0].Sha;
+                Assert.Equal("Some Content", contents[0].Content);
 
                 var update = await fixture.UpdateFile(
                     repository.Id,
@@ -658,8 +658,8 @@ namespace Octokit.Tests.Integration.Clients
                 Assert.Equal("somefile.txt", update.Content.Name);
 
                 contents = await fixture.GetAllContentsByRef(repository.Owner.Login, repository.Name, "somefile.txt", branchName);
-                Assert.Equal("New Content", contents.First().Content);
-                fileSha = contents.First().Sha;
+                Assert.Equal("New Content", contents[0].Content);
+                fileSha = contents[0].Sha;
 
                 await fixture.DeleteFile(
                     repository.Id,

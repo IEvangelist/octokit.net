@@ -718,7 +718,7 @@ public class RepositoriesClientTests
         {
             using (var repoContext = await _github.CreateUserRepositoryContext())
             {
-                var reference = _github.Git.Reference.GetAll(repoContext.RepositoryOwner, repoContext.RepositoryName).Result.First();
+                var reference = _github.Git.Reference.GetAll(repoContext.RepositoryOwner, repoContext.RepositoryName).Result[0];
                 _github.Git.Reference.Create(repoContext.RepositoryId, new NewReference("refs/heads/primary", reference.Object.Sha)).Wait();
                 var update = new RepositoryUpdate() { DefaultBranch = "primary" };
 
@@ -733,7 +733,7 @@ public class RepositoriesClientTests
         {
             using (var repoContext = await _github.CreateUserRepositoryContext())
             {
-                var reference = _github.Git.Reference.GetAll(repoContext.RepositoryOwner, repoContext.RepositoryName).Result.First();
+                var reference = _github.Git.Reference.GetAll(repoContext.RepositoryOwner, repoContext.RepositoryName).Result[0];
                 _github.Git.Reference.Create(repoContext.RepositoryId, new NewReference("refs/heads/primary", reference.Object.Sha)).Wait();
                 var update = new RepositoryUpdate() { DefaultBranch = "primary" };
 

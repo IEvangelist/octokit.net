@@ -27,7 +27,7 @@ namespace Octokit.Tests.Integration.Clients
                 {
                     // Need to get a CheckSuiteId so we can test the Get method
                     var headCommit = await _github.Repository.Commit.Get(repoContext.RepositoryOwner, repoContext.RepositoryName, repoContext.RepositoryDefaultBranch);
-                    var checkSuite = (await _githubAppInstallation.Check.Suite.GetAllForReference(repoContext.RepositoryOwner, repoContext.RepositoryName, headCommit.Sha)).CheckSuites.First();
+                    var checkSuite = (await _githubAppInstallation.Check.Suite.GetAllForReference(repoContext.RepositoryOwner, repoContext.RepositoryName, headCommit.Sha)).CheckSuites[0];
 
                     // Get Check Suite by Id
                     var result = await _github.Check.Suite.Get(repoContext.RepositoryOwner, repoContext.RepositoryName, checkSuite.Id);
@@ -45,7 +45,7 @@ namespace Octokit.Tests.Integration.Clients
                 {
                     // Need to get a CheckSuiteId so we can test the Get method
                     var headCommit = await _github.Repository.Commit.Get(repoContext.RepositoryId, repoContext.RepositoryDefaultBranch);
-                    var checkSuite = (await _githubAppInstallation.Check.Suite.GetAllForReference(repoContext.RepositoryId, headCommit.Sha)).CheckSuites.First();
+                    var checkSuite = (await _githubAppInstallation.Check.Suite.GetAllForReference(repoContext.RepositoryId, headCommit.Sha)).CheckSuites[0];
 
                     // Get Check Suite by Id
                     var result = await _github.Check.Suite.Get(repoContext.RepositoryId, checkSuite.Id);
@@ -233,7 +233,7 @@ namespace Octokit.Tests.Integration.Clients
                 {
                     // Need to get a CheckSuiteId so we can test the Get method
                     var headCommit = await _github.Repository.Commit.Get(repoContext.RepositoryId, repoContext.RepositoryDefaultBranch);
-                    var checkSuite = (await _githubAppInstallation.Check.Suite.GetAllForReference(repoContext.RepositoryId, headCommit.Sha)).CheckSuites.First();
+                    var checkSuite = (await _githubAppInstallation.Check.Suite.GetAllForReference(repoContext.RepositoryId, headCommit.Sha)).CheckSuites[0];
 
                     // Get Check Suite by Id
                     var result = await _githubAppInstallation.Check.Suite.Rerequest(repoContext.RepositoryOwner, repoContext.RepositoryName, checkSuite.Id);
@@ -249,7 +249,7 @@ namespace Octokit.Tests.Integration.Clients
                 {
                     // Need to get a CheckSuiteId so we can test the Get method
                     var headCommit = await _github.Repository.Commit.Get(repoContext.RepositoryId, repoContext.RepositoryDefaultBranch);
-                    var checkSuite = (await _githubAppInstallation.Check.Suite.GetAllForReference(repoContext.RepositoryId, headCommit.Sha)).CheckSuites.First();
+                    var checkSuite = (await _githubAppInstallation.Check.Suite.GetAllForReference(repoContext.RepositoryId, headCommit.Sha)).CheckSuites[0];
 
                     // Get Check Suite by Id
                     var result = await _githubAppInstallation.Check.Suite.Rerequest(repoContext.RepositoryId, checkSuite.Id);
