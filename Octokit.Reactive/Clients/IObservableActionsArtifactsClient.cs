@@ -12,6 +12,13 @@ namespace Octokit.Reactive
     /// </remarks>
     public interface IObservableActionsArtifactsClient
     {
+        /// <summary>
+        /// Lists the artifacts for a repository
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="repository"></param>
+        /// <param name="listArtifactsRequest"></param>
+        /// <returns></returns>
         IObservable<ListArtifactsResponse> ListArtifacts(string owner, string repository, ListArtifactsRequest listArtifactsRequest = null);
         
         /// <summary>
@@ -48,6 +55,7 @@ namespace Octokit.Reactive
         /// <param name="owner"></param>
         /// <param name="repository"></param>
         /// <param name="runId"></param>
+        /// <param name="listArtifactsRequest"></param>
         /// <returns></returns>
         IObservable<ListArtifactsResponse> ListWorkflowArtifacts(string owner, string repository, long runId, ListArtifactsRequest listArtifactsRequest = null);
     }
