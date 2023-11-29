@@ -317,6 +317,26 @@ namespace Octokit
             });
         }
 
+#if NET6_0_OR_GREATER
+        /// <inheritdoc cref="IConnection.Patch{T}(Uri, object)" />
+        public Task<IApiResponse<T>> Patch<TBody, TResult>(Uri uri, T body)
+        {
+            Ensure.ArgumentNotNull(uri, nameof(uri));
+            Ensure.ArgumentNotNull(body, nameof(body));
+
+            return SendData<T>(uri, HttpVerb.Patch, body, null, null, CancellationToken.None);
+        }
+
+        /// <inheritdoc cref="IConnection.Patch(Uri, object, string)" />
+        public Task<IApiResponse<T>> Patch<T>(Uri uri, object body, string accepts)
+        {
+            Ensure.ArgumentNotNull(uri, nameof(uri));
+            Ensure.ArgumentNotNull(body, nameof(body));
+            Ensure.ArgumentNotNull(accepts, nameof(accepts));
+
+            return SendData<T>(uri, HttpVerb.Patch, body, accepts, null, CancellationToken.None);
+        }
+#else
         /// <inheritdoc cref="IConnection.Patch(Uri, object)" />
         public Task<IApiResponse<T>> Patch<T>(Uri uri, object body)
         {
@@ -335,6 +355,7 @@ namespace Octokit
 
             return SendData<T>(uri, HttpVerb.Patch, body, accepts, null, CancellationToken.None);
         }
+#endif
 
         /// <inheritdoc cref="IConnection.Post(Uri, CancellationToken)" />
         public async Task<HttpStatusCode> Post(Uri uri, CancellationToken cancellationToken = default)

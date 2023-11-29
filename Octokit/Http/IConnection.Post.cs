@@ -45,9 +45,9 @@ public partial interface IConnection
 #if NET6_0_OR_GREATER
     /// <summary>
     /// Performs an asynchronous HTTP POST request.
-    /// Attempts to map the response body to an object of type <typeparamref name="T"/>
+    /// Attempts to map the response body to an object of type <typeparamref name="TResult"/>
     /// </summary>
-    /// <typeparam name="T">The type to map the response to</typeparam>
+    /// <typeparam name="TBody">The type to map the response to</typeparam>
     /// <param name="uri">URI endpoint to send request to</param>
     /// <param name="body">The object to serialize as the body of the request</param>
     /// <param name="jsonTypeInfo">The JSON type information for the given <typeparamref name="T"/> type.</param>
@@ -56,10 +56,11 @@ public partial interface IConnection
     /// <param name="parameters">Extra parameters for authentication.</param>
     /// <param name="cancellationToken">An optional token to monitor for cancellation requests</param>
     /// <returns><seealso cref="IResponse"/> representing the received HTTP response</returns>
-    Task<IApiResponse<T>> Post<T>(
+    Task<IApiResponse<TResult>> Post<TBody, TResult>(
         Uri uri,
-        T body,
-        JsonTypeInfo<T> jsonTypeInfo,
+        TBody body,
+        JsonTypeInfo<TBody> jsonTypeInfo,
+        JsonTypeInfo<TResult> jsonTypeInfoResult,
         string accepts,
         string contentType,
         IDictionary<string, string> parameters = null,

@@ -242,7 +242,7 @@ namespace Octokit
         /// <param name="owner">The owner of the repository</param>
         /// <param name="name">The name of the repository</param>
         /// <param name="update">New values to update the repository with</param>
-        /// <returns>The updated <see cref="TResult:Octokit.Repository"/></returns>
+        /// <returns>The updated <see cref="T:Octokit.Repository"/></returns>
         [ManualRoute("PATCH", "/repos/{owner}/{repo}")]
         public Task<Repository> Edit(string owner, string name, RepositoryUpdate update)
         {
@@ -258,7 +258,7 @@ namespace Octokit
         /// </summary>
         /// <param name="repositoryId">The Id of the repository</param>
         /// <param name="update">New values to update the repository with</param>
-        /// <returns>The updated <see cref="TResult:Octokit.Repository"/></returns>
+        /// <returns>The updated <see cref="T:Octokit.Repository"/></returns>
         [ManualRoute("PATCH", "/repositories/{id}")]
         public Task<Repository> Edit(long repositoryId, RepositoryUpdate update)
         {
@@ -934,7 +934,7 @@ namespace Octokit
         /// </remarks>
         /// <param name="owner">The owner of the repository</param>
         /// <param name="name">The name of the repository</param>
-        /// <returns>All <see cref="TResult:Octokit.Team"/>s associated with the repository</returns>
+        /// <returns>All <see cref="T:Octokit.Team"/>s associated with the repository</returns>
         [ManualRoute("GET", "/repos/{owner}/{repo}/teams")]
         public Task<IReadOnlyList<Team>> GetAllTeams(string owner, string name)
         {
@@ -951,7 +951,7 @@ namespace Octokit
         /// See the <a href="http://developer.github.com/v3/repos/#list-teams">API documentation</a> for more details
         /// </remarks>
         /// <param name="repositoryId">The Id of the repository</param>
-        /// <returns>All <see cref="TResult:Octokit.Team"/>s associated with the repository</returns>
+        /// <returns>All <see cref="T:Octokit.Team"/>s associated with the repository</returns>
         [ManualRoute("GET", "/repositories/{id}/teams")]
         public Task<IReadOnlyList<Team>> GetAllTeams(long repositoryId)
         {
@@ -967,7 +967,7 @@ namespace Octokit
         /// <param name="owner">The owner of the repository</param>
         /// <param name="name">The name of the repository</param>
         /// <param name="options">Options for changing the API response</param>
-        /// <returns>All <see cref="TResult:Octokit.Team"/>s associated with the repository</returns>
+        /// <returns>All <see cref="T:Octokit.Team"/>s associated with the repository</returns>
         [ManualRoute("GET", "/repos/{owner}/{repo}/teams")]
         public Task<IReadOnlyList<Team>> GetAllTeams(string owner, string name, ApiOptions options)
         {
@@ -986,7 +986,7 @@ namespace Octokit
         /// </remarks>
         /// <param name="repositoryId">The Id of the repository</param>
         /// <param name="options">Options for changing the API response</param>
-        /// <returns>All <see cref="TResult:Octokit.Team"/>s associated with the repository</returns>
+        /// <returns>All <see cref="T:Octokit.Team"/>s associated with the repository</returns>
         [ManualRoute("GET", "/repositories/{id}/teams")]
         public Task<IReadOnlyList<Team>> GetAllTeams(long repositoryId, ApiOptions options)
         {
